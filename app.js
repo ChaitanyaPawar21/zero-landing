@@ -1,5 +1,7 @@
 /* ========================================================================
-   Zero — landing page behaviour: GSAP scroll motion + demo form validation
+   Zero — landing page behaviour.
+   No animation library: IntersectionObserver decides when, CSS does the
+   moving, so the motion stays off the main thread while the page loads.
    ===================================================================== */
 
 // TODO: point this at the real form handler (Formspree / Google Apps Script /
@@ -7,7 +9,9 @@
 // success state without sending anything anywhere.
 const FORM_ENDPOINT = '';
 
-/* ------------------------------------------------------------- theme toggle */
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+
+/* ----------------------------------------------------------- theme */
 (function theme() {
   const btn = document.getElementById('theme-toggle');
   if (!btn) return;
@@ -30,66 +34,84 @@ const FORM_ENDPOINT = '';
   sync();
 })();
 
-/* ------------------------------------------------------------------ motion */
-(function motion() {
-  const html = document.documentElement;
-
-  // sticky header gets its edge once you scroll off the top (works with or without GSAP)
+/* ---------------------------------------------------------- header */
+(function header() {
   const head = document.querySelector('.site-head');
-  const onScroll = () => head.classList.toggle('stuck', window.scrollY > 40);
+  if (!head) return;
+  const onScroll = () => head.classList.toggle('stuck', window.scrollY > 8);
   addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  // No GSAP (CDN blocked, offline, ad-blocker)? Drop the hiding class and bail.
-  if (!window.gsap) { html.classList.remove('js'); return; }
+  // close the mobile menu after a jump, and on outside click
+  const menu = document.querySelector('.menu');
+  if (!menu) return;
+  menu.addEventListener('click', (e) => {
+    if (e.target.closest('.menu-panel a')) menu.open = false;
+  });
+  document.addEventListener('click', (e) => {
+    if (menu.open && !menu.contains(e.target)) menu.open = false;
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu.open) { menu.open = false; menu.querySelector('summary').focus(); }
+  });
+})();
 
-  gsap.registerPlugin(ScrollTrigger);
+/* ---------------------------------------------------------- reveal */
+(function reveal() {
+  const items = [...document.querySelectorAll('.reveal')];
+  if (!items.length) return;
 
-  const mm = gsap.matchMedia();
+  // Nothing to observe with: show everything rather than hide it forever.
+  if (!('IntersectionObserver' in window)) {
+    items.forEach((el) => el.classList.add('in'));
+    return;
+  }
 
-  // Reduced motion: everything visible, nothing moves.
-  mm.add('(prefers-reduced-motion: reduce)', () => {
-    gsap.set('.reveal, .hero-el, .hero-art', { opacity: 1, y: 0, clearProps: 'transform' });
+  // Stagger siblings only. Capped so a six-card grid never feels slow.
+  const seen = new Map();
+  items.forEach((el) => {
+    const i = seen.get(el.parentElement) || 0;
+    seen.set(el.parentElement, i + 1);
+    if (i) el.style.transitionDelay = Math.min(i, 5) * 55 + 'ms';
   });
 
-  mm.add('(prefers-reduced-motion: no-preference)', () => {
-    // hero: headline block, then the collage assembles underneath it
-    gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.7 } })
-      .fromTo('.hero-el', { y: 22, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.08 })
-      .fromTo('.hero-art',
-        { y: 40, opacity: 0, scale: 0.97 },
-        { y: 0, opacity: 1, scale: 1, duration: 0.9, stagger: 0.09, clearProps: 'scale' }, 0.3)
-      .fromTo('.c-quiz .ui-opt', { x: -12, opacity: 0 }, { x: 0, opacity: 1, stagger: 0.06 }, '-=0.55')
-      .fromTo('.c-quiz .ui-bars i', { scaleY: 0 }, { scaleY: 1, transformOrigin: 'bottom', stagger: 0.06 }, '-=0.3')
-      .fromTo('.c-analytics .ui-meter i', { scaleX: 0 }, { scaleX: 1, transformOrigin: 'left', stagger: 0.07, duration: 0.8 }, '-=0.6');
-
-    // fade-up on scroll, batched so a long page stays cheap
-    ScrollTrigger.batch('.reveal', {
-      start: 'top 88%',
-      once: true,
-      batchMax: 6,
-      onEnter: (batch) => gsap.fromTo(
-        batch,
-        { y: 24, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, stagger: 0.07, ease: 'power2.out', overwrite: true }
-      )
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('in');
+      io.unobserve(entry.target);            // once in, never again
     });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.01 });
 
-    // meters and bars inside any tile fill when that tile arrives
-    ScrollTrigger.batch('.tile .ui-meter i, .tile .ui-bars i', {
-      start: 'top 92%',
-      once: true,
-      onEnter: (batch) => gsap.fromTo(
-        batch,
-        { scaleX: 0, scaleY: 0 },
-        {
-          scaleX: 1, scaleY: 1, duration: 0.7, stagger: 0.05, ease: 'power2.out',
-          transformOrigin: 'left bottom', overwrite: true
-        }
-      )
+  items.forEach((el) => io.observe(el));
+})();
+
+/* ------------------------------------------------------------- faq */
+/* <details> keeps the semantics, the keyboard and the no-JS fallback.
+   JS only exists so closing animates instead of snapping shut. */
+(function faq() {
+  const stack = document.querySelector('.faq-stack');
+  if (!stack) return;
+
+  const CLOSE_MS = 300;   // matches the grid-template-rows transition in styles.css
+
+  const close = (d) => {
+    if (!d.open || d.classList.contains('closing')) return;
+    d.classList.add('closing');
+    setTimeout(() => {
+      d.open = false;
+      d.classList.remove('closing');
+    }, reduceMotion.matches ? 0 : CLOSE_MS);
+  };
+
+  stack.querySelectorAll('details').forEach((d) => {
+    d.querySelector('summary').addEventListener('click', (e) => {
+      e.preventDefault();                       // we drive `open` ourselves
+      if (d.open) { close(d); return; }
+      stack.querySelectorAll('details[open]').forEach(close);   // one at a time
+      d.open = true;
     });
   });
-
 })();
 
 /* ------------------------------------------------------- demo form */

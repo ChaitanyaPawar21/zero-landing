@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Card Split Accordion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap">
+<!-- tokens only: --panel, --line, --ink, --ink-2, --brand-ink, light + dark -->
+<link rel="stylesheet" href="styles.css">
+
+<style>
+/* ===================================================================
+   Card split accordion
+   Port of watermelon/card-split-accordian (React + motion) to vanilla.
+   Stack reads as one block; the open card detaches, rounds all four
+   corners, and its two neighbours round the edge they now face.
+   No JS measuring: grid-template-rows 0fr -> 1fr does the height.
+   To ship: copy this <style> into styles.css, the <ul> into the page,
+   and the script at the bottom into app.js.
+   ================================================================ */
+
+.csa { list-style: none; margin: 0 auto; padding: 0; max-width: 34rem; }
+
+.csa-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top-width: 0;
+  border-bottom-width: 0;
+  border-radius: 0;
+  overflow: hidden;
+  /* ponytail: margin-block animates layout (the React version projects it
+     with a transform). Fine at 6 cards; switch to a transform-based
+     technique if a long list ever janks. */
+  transition: border-radius .28s cubic-bezier(.22,1,.36,1),
+              margin-block .28s cubic-bezier(.22,1,.36,1);
+}
+
+/* --- which edges exist ------------------------------------------- */
+.csa > li:first-child  .csa-card { border-top-width: 1px; }
+.csa > li:last-child   .csa-card { border-bottom-width: 1px; }
+.csa > li.is-open      .csa-card { border-top-width: 1px; border-bottom-width: 1px; }
+.csa > li:has(+ li.is-open) .csa-card { border-bottom-width: 1px; }
+.csa > li.is-open + li .csa-card    { border-top-width: 1px; }
+
+/* --- which corners are round ------------------------------------- */
+.csa > li:first-child .csa-card { border-start-start-radius: 20px; border-start-end-radius: 20px; }
+.csa > li:last-child  .csa-card { border-end-start-radius: 20px; border-end-end-radius: 20px; }
+.csa > li:has(+ li.is-open) .csa-card { border-end-start-radius: 20px; border-end-end-radius: 20px; }
+.csa > li.is-open + li .csa-card      { border-start-start-radius: 20px; border-start-end-radius: 20px; }
+.csa > li.is-open .csa-card { border-radius: 20px; margin-block: 10px; box-shadow: var(--shadow-s); }
+
+/* --- trigger ----------------------------------------------------- */
+.csa-trig {
+  display: flex; width: 100%; align-items: center; justify-content: space-between;
+  gap: .75rem; padding: .75rem; background: none; border: 0; cursor: pointer;
+  font: inherit; color: var(--ink); text-align: left;
+}
+.csa-trig:hover { color: var(--brand-ink); }
+.csa-trig:focus-visible { outline: 2px solid var(--brand); outline-offset: -2px; border-radius: 18px; }
+.csa-label { display: flex; align-items: center; gap: .75rem; font-weight: 700; font-size: .9375rem; }
+@media (min-width: 40rem) { .csa-label { font-size: 1.0625rem; } }
+.csa-label svg { flex: none; width: 1.125rem; height: 1.125rem; color: var(--ink-2); }
+.csa-chev {
+  flex: none; width: 1.25rem; height: 1.25rem; color: var(--ink-3);
+  transition: transform .28s cubic-bezier(.22,1,.36,1);
+}
+li.is-open .csa-chev { transform: rotate(180deg); }
+
+/* --- panel: 0fr -> 1fr, no measuring ----------------------------- */
+.csa-panel {
+  display: grid; grid-template-rows: 0fr; opacity: 0; visibility: hidden;
+  transition: grid-template-rows .28s cubic-bezier(.22,1,.36,1),
+              opacity .18s linear, visibility .28s;
+}
+li.is-open .csa-panel { grid-template-rows: 1fr; opacity: 1; visibility: visible; }
+.csa-panel > div { overflow: hidden; min-height: 0; }
+.csa-body {
+  padding: 0 1.25rem 1.25rem;
+  color: var(--ink-2); font-size: .875rem; font-weight: 500; line-height: 1.55;
+}
+@media (min-width: 40rem) { .csa-body { font-size: 1rem; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .csa-card, .csa-panel, .csa-chev { transition: none; }
+}
+
+/* demo page chrome only — not part of the component */
+body { background: var(--paper); color: var(--ink); font-family: var(--text); }
+.demo-wrap { max-width: 34rem; margin: 0 auto; padding: 4rem 1rem; }
+.demo-wrap h1 { font-size: 1.5rem; margin: 0 0 2rem; }
+</style>
+</head>
+<body>
+
+<div class="demo-wrap">
+  <h1>Card split accordion</h1>
+
+  <ul class="csa">
+    <li>
+      <div class="csa-card">
+        <button class="csa-trig" type="button" aria-expanded="false" aria-controls="csa-p1">
+          <span class="csa-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.7 8.9a1 1 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1 1 0 0 1 1.3 0C14.3 3.8 16.8 5 18.8 5a1 1 0 0 1 1 1z"/></svg>
+            Is our students' data safe?
+          </span>
+          <svg class="csa-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="csa-panel" id="csa-p1" role="region">
+          <div><p class="csa-body">The school owns its data. We store only what runs classes, never sell it, and show no ads. Hosting region, retention and data-processing terms are confirmed in writing before you sign.</p></div>
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div class="csa-card">
+        <button class="csa-trig" type="button" aria-expanded="false" aria-controls="csa-p2">
+          <span class="csa-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            Is the content aligned to CBSE?
+          </span>
+          <svg class="csa-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="csa-panel" id="csa-p2" role="region">
+          <div><p class="csa-body">Organised chapter-wise by the CBSE syllabus for classes 8 to 12. Your staff can add or edit questions in any chapter.</p></div>
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div class="csa-card">
+        <button class="csa-trig" type="button" aria-expanded="false" aria-controls="csa-p3">
+          <span class="csa-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            What devices do we need?
+          </span>
+          <svg class="csa-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="csa-panel" id="csa-p3" role="region">
+          <div><p class="csa-body">A browser, on what you already have. Classroom Quiz needs one projector or TV plus the teacher's device; students can practise on a lab computer or their own phone.</p></div>
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div class="csa-card">
+        <button class="csa-trig" type="button" aria-expanded="false" aria-controls="csa-p4">
+          <span class="csa-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2h4M12 14V9"/><circle cx="12" cy="14" r="8"/></svg>
+            How long does setup take?
+          </span>
+          <svg class="csa-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="csa-panel" id="csa-p4" role="region">
+          <div><p class="csa-body">We do it: classes, sections, subjects, staff accounts. Typical onboarding is about <strong>[X working days]</strong> — a placeholder until we commit to a date in your quote.</p></div>
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div class="csa-card">
+        <button class="csa-trig" type="button" aria-expanded="false" aria-controls="csa-p5">
+          <span class="csa-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.55a11 11 0 0 1 14 0M8.5 16.43a6 6 0 0 1 7 0M2 8.82a15 15 0 0 1 20 0"/><path d="M12 20h.01"/></svg>
+            Does it work on low bandwidth?
+          </span>
+          <svg class="csa-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="csa-panel" id="csa-p5" role="region">
+          <div><p class="csa-body">Lessons, practice and tests are text-and-diagram based, so they are light. Video is the one part that needs bandwidth. We test the live games on your connection during the demo.</p></div>
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div class="csa-card">
+        <button class="csa-trig" type="button" aria-expanded="false" aria-controls="csa-p6">
+          <span class="csa-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            What if we stop using Zero?
+          </span>
+          <svg class="csa-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="csa-panel" id="csa-p6" role="region">
+          <div><p class="csa-body">You take it with you. Question banks, papers and results export to PDF and Excel at any time, including on the way out.</p></div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<script>
+// One delegated handler per stack. One card open at a time, like the original.
+document.querySelectorAll('.csa').forEach(function (stack) {
+  stack.addEventListener('click', function (e) {
+    var btn = e.target.closest('.csa-trig');
+    if (!btn || !stack.contains(btn)) return;
+    var li = btn.closest('li');
+    var wasOpen = li.classList.contains('is-open');
+
+    stack.querySelectorAll('li.is-open').forEach(function (open) {
+      open.classList.remove('is-open');
+      open.querySelector('.csa-trig').setAttribute('aria-expanded', 'false');
+    });
+
+    if (!wasOpen) {
+      li.classList.add('is-open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+</script>
+</body>
+</html>
