@@ -1,0 +1,963 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- TODO: brand name, logo and domain are placeholders ("Zero"). Swap before launch. -->
+<title>Zero — run your entire science department: learn, practise, test, play</title>
+<meta name="description" content="One platform for CBSE science, classes 8 to 12. Chapter-wise lessons, practice and tests for students; question banks, paper creation, analytics and live classroom games for teachers. Book a free demo for your school.">
+<link rel="canonical" href="https://example.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Zero">
+<meta property="og:title" content="Zero — run your entire science department: learn, practise, test, play">
+<meta property="og:description" content="One platform for CBSE science, classes 8 to 12. Lessons, practice and tests for students; question banks, paper creation, analytics and live classroom games for teachers.">
+<meta property="og:url" content="https://example.com/">
+<!-- TODO: add a real 1200x630 og image at /og.png -->
+<meta property="og:image" content="https://example.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1a1a1a">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 40 40%27%3E%3Crect width=%2740%27 height=%2740%27 rx=%2711%27 fill=%27%23FF5A3C%27/%3E%3Cpath d=%27M16 10h8v6l5 10a3.4 3.4 0 0 1-3 5H14a3.4 3.4 0 0 1-3-5l5-10z%27 fill=%27%23fff%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="styles.css">
+
+<script>
+  // Runs before first paint, so the chosen theme never flashes.
+  (function () {
+    var d = document.documentElement;
+    d.classList.add('js', 'js-ok');
+
+    var stored = null;
+    try { stored = localStorage.getItem('theme'); } catch (e) {}
+    var mql = window.matchMedia('(prefers-color-scheme: dark)');
+    d.dataset.theme = stored === 'light' || stored === 'dark'
+      ? stored
+      : (mql.matches ? 'dark' : 'light');
+
+    // keep following the OS until the visitor makes an explicit choice
+    mql.addEventListener('change', function (e) {
+      var s = null;
+      try { s = localStorage.getItem('theme'); } catch (err) {}
+      if (s !== 'light' && s !== 'dark') d.dataset.theme = e.matches ? 'dark' : 'light';
+    });
+
+    setTimeout(function () { if (!window.gsap) d.classList.remove('js'); }, 2500);
+  })();
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FF3B6D"/><stop offset="1" stop-color="#FF9500"/>
+    </linearGradient>
+    <pattern id="tiles" width="86" height="86" patternUnits="userSpaceOnUse">
+      <rect x="10" y="10" width="54" height="54" rx="10" fill="none" stroke="#fdf3d8" stroke-opacity=".07" stroke-width="1.5"/>
+    </pattern>
+  </defs>
+</svg>
+
+<header class="site-head" id="top">
+  <div class="wrap head-in">
+    <a class="brand" href="#top" aria-label="Zero, home">
+      <svg viewBox="0 0 40 40" aria-hidden="true">
+        <rect width="40" height="40" rx="11" fill="url(#bg)"/>
+        <path d="M16 10h8v6l5 10a3.4 3.4 0 0 1-3 5H14a3.4 3.4 0 0 1-3-5l5-10z" fill="#fff" fill-opacity=".96"/>
+        <path d="M13.6 23h12.8l1.5 3H12.1z" fill="#FF3B6D"/>
+        <circle cx="17.5" cy="25.5" r="1.3" fill="#fff"/><circle cx="22.5" cy="27" r="1" fill="#fff"/>
+      </svg>
+      Zero
+    </a>
+
+    <nav class="nav" aria-label="Sections">
+      <ul>
+        <li><a href="#games">Classroom games</a></li>
+        <li><a href="#students">For students</a></li>
+        <li><a href="#teachers">For teachers</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+
+    <button class="theme-btn" type="button" id="theme-toggle" aria-label="Switch to dark theme" title="Switch to dark theme">
+      <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+      </svg>
+      <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.2"/>
+        <path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/>
+      </svg>
+    </button>
+
+    <div class="head-act"><a class="btn btn-primary btn-sm" href="#demo">Book a free demo</a></div>
+
+    <details class="menu">
+      <summary aria-label="Open menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        Menu
+      </summary>
+      <div class="menu-panel">
+        <a href="#games">Classroom games</a>
+        <a href="#students">For students</a>
+        <a href="#teachers">For teachers</a>
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn-primary btn-block" href="#demo">Book a free demo</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============================= HERO ============================= -->
+  <section class="hero" aria-labelledby="hero-h">
+    <svg class="tilefield" aria-hidden="true"><rect width="100%" height="100%" fill="url(#tiles)"/></svg>
+
+    <div class="wrap">
+      <div class="hero-in">
+        <p class="kicker center hero-el" style="justify-content:center">For CBSE schools · Classes 8 to 12</p>
+        <h1 id="hero-h" class="hero-el">Run your entire science department <span class="accent">from one place.</span></h1>
+        <p class="sub hero-el">
+          Lessons, practice and tests for students. Question banks, paper creation and analytics
+          for teachers. And live classroom games the whole room plays together — built from the
+          same question bank your exams come from.
+        </p>
+        <div class="cta-pair hero-el">
+          <a class="btn btn-primary cta-tall" href="#demo">
+            <span class="role">Principals &amp; HODs</span>
+            <span class="act">Book a free demo</span>
+          </a>
+          <!-- TODO: point to the real brochure PDF -->
+          <a class="btn btn-line cta-tall" href="#">
+            <span class="role">For the trustee meeting</span>
+            <span class="act">Download the brochure</span>
+          </a>
+        </div>
+        <p class="hero-note hero-el">
+          <b>No app store downloads.</b> Runs in the browser on the computers, projectors and phones your school already has.
+        </p>
+      </div>
+    </div>
+
+    <!-- Product visual: drawn with HTML/CSS/SVG. Not a screenshot of real software. -->
+    <div class="wrap">
+      <div class="collage" role="img" aria-label="Illustration of the product: a Classroom Quiz question on the projector with four options and the live answer count, a chapter-weakness analytics panel, a test-paper builder with question-type counts, a class leaderboard, and the interactive periodic table.">
+        <div class="ui c-analytics hero-art">
+          <p class="ui-head">Class 10 · weakest chapters</p>
+          <div class="ui-row"><span>Chemical Reactions</span><span class="ui-meter"><i class="bad" style="width:41%"></i></span></div>
+          <div class="ui-row"><span>Acids &amp; Bases</span><span class="ui-meter"><i class="mid" style="width:58%"></i></span></div>
+          <div class="ui-row"><span>Metals</span><span class="ui-meter"><i class="mid" style="width:73%"></i></span></div>
+          <div class="ui-row"><span>Carbon Compounds</span><span class="ui-meter"><i class="good" style="width:86%"></i></span></div>
+        </div>
+
+        <div class="ui c-quiz hero-art">
+          <p class="ui-head"><span class="dot"></span> Classroom Quiz · live · 38 of 41 answered</p>
+          <p class="ui-q">Which of these is a displacement reaction?</p>
+          <div class="ui-opt"><b>A</b> CaO + H₂O → Ca(OH)₂</div>
+          <div class="ui-opt on"><b>B</b> Fe + CuSO₄ → FeSO₄ + Cu</div>
+          <div class="ui-opt"><b>C</b> 2H₂ + O₂ → 2H₂O</div>
+          <div class="ui-opt"><b>D</b> CaCO₃ → CaO + CO₂</div>
+          <div class="ui-bars" style="margin-top:.6rem">
+            <i style="height:26%"></i><i style="height:94%"></i><i style="height:44%"></i><i style="height:16%"></i>
+          </div>
+        </div>
+
+        <div class="ui c-paper hero-art">
+          <p class="ui-head">Paper builder · 40 marks</p>
+          <div class="ui-row"><span>MCQ</span><b>×12</b></div>
+          <div class="ui-row"><span>Assertion–reason</span><b>×4</b></div>
+          <div class="ui-row"><span>Short answer</span><b>×6</b></div>
+          <div class="ui-row"><span>Case study</span><b>×2</b></div>
+          <p style="margin:.6rem 0 0"><span class="ui-chip on">Auto-fill</span><span class="ui-chip">Shuffle</span></p>
+        </div>
+
+        <div class="ui c-lead hero-art">
+          <p class="ui-head">Class leaderboard</p>
+          <div class="ui-rank top"><b>1</b> 10-B · Aarav S.</div>
+          <div class="ui-rank"><b>2</b> 10-A · Meher K.</div>
+          <div class="ui-rank"><b>3</b> 10-B · Ishan R.</div>
+        </div>
+
+        <div class="ui c-pt hero-art">
+          <p class="ui-head">Periodic table</p>
+          <div class="ui-pt">
+            <span>H</span><span>He</span><span>Li</span><span>Be</span><span class="hot">C</span><span>N</span>
+            <span class="hot">O</span><span>F</span><span>Ne</span><span>Na</span><span>Mg</span><span>Al</span>
+            <span>Si</span><span>P</span><span>S</span><span>Cl</span><span>Ar</span><span>K</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== PROBLEM -> PROMISE ====================== -->
+  <section class="band" aria-labelledby="prob-h">
+    <div class="wrap">
+      <p class="kicker reveal">The honest version</p>
+      <h2 id="prob-h" class="reveal" style="max-width:20ch">Three things every science department puts up with.</h2>
+
+      <div class="swaps">
+        <div class="swap reveal">
+          <p class="swap-then"><span class="n">01</span> Question papers are made by hand. The same two teachers retype them every week, chapter by chapter, out of old files and memory.</p>
+          <p class="swap-now"><span class="arrow">→</span> Pick class, subject, chapters and a difficulty mix. The paper fills itself from your question bank, and exports to PDF.</p>
+        </div>
+        <div class="swap reveal">
+          <p class="swap-then"><span class="n">02</span> Nobody can see who is struggling. A chapter that didn't land shows up in the marks a term later, when it is too late to reteach it.</p>
+          <p class="swap-now"><span class="arrow">→</span> Analytics at class, chapter and student level, from the first weekly test onward.</p>
+        </div>
+        <div class="swap reveal">
+          <p class="swap-then"><span class="n">03</span> The last period is a write-off. Revision means reading the chapter out loud one more time to a room that stopped listening.</p>
+          <p class="swap-now"><span class="arrow">→</span> Put the chapter on the projector and the whole class plays it together. Same syllabus, different room.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PILLAR 1 — GAMES ===================== -->
+  <section class="band band-tint" id="games" aria-labelledby="games-h">
+    <div class="wrap">
+      <p class="kicker reveal">Live classroom games</p>
+      <h2 id="games-h" class="reveal" style="max-width:18ch">The chapter, played by the whole class.</h2>
+      <p class="sub reveal">Every game is generated from your own question bank, so a game period is still syllabus time — not a break from it.</p>
+
+      <div class="bento">
+        <article class="tile tile-lead t-wide reveal">
+          <div>
+            <h3>Classroom Quiz</h3>
+            <p>One projector, one room, one question at a time. The class answers together and the bar chart fills live, so the teacher sees the misconception the moment it happens — not in next week's marks.</p>
+          </div>
+          <div class="tile-art">
+            <div class="ui">
+              <p class="ui-head"><span class="dot"></span> Live · 38 of 41 answered</p>
+              <p class="ui-q">Which of these is a displacement reaction?</p>
+              <div class="ui-opt"><b>A</b> CaO + H₂O → Ca(OH)₂</div>
+              <div class="ui-opt on"><b>B</b> Fe + CuSO₄ → FeSO₄ + Cu</div>
+              <div class="ui-bars" style="margin-top:.5rem"><i style="height:26%"></i><i style="height:94%"></i><i style="height:44%"></i><i style="height:16%"></i></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="tile t-tall reveal">
+          <h3>Live Quiz</h3>
+          <p>KBC-style, hosted by the teacher in real time. One question on screen, the room watching, the timer running.</p>
+          <div class="tile-art">
+            <div class="ui">
+              <p class="ui-head">Question 7 of 15</p>
+              <div class="ui-row"><span>Host</span><b>Mrs. Nair</b></div>
+              <div class="ui-row"><span>Time left</span><b>00:12</b></div>
+              <div class="ui-meter" style="margin-top:.5rem"><i style="width:28%"></i></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="tile t-tall reveal">
+          <h3>Crossword</h3>
+          <p>Generated from the chapter's own question bank, so every clue is a term they will be examined on.</p>
+          <div class="tile-art">
+            <div class="ui">
+              <p class="ui-head">Carbon Compounds</p>
+              <div class="ui-cross">
+                <span class="lit">1</span><span class="lit"></span><span class="lit"></span><span class="off"></span><span class="lit">2</span><span class="lit"></span>
+                <span class="off"></span><span class="off"></span><span class="lit"></span><span class="off"></span><span class="lit"></span><span class="off"></span>
+                <span class="lit">3</span><span class="lit"></span><span class="lit"></span><span class="lit"></span><span class="lit"></span><span class="off"></span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="tile t-wide reveal">
+          <div>
+            <h3>A teacher builds one between periods</h3>
+            <p>Pick class, subject, chapters, difficulty mix and how many of each question type. Auto-fill, shuffle, re-pick any question, drag to reorder, then preview the whole thing with answers before the bell.</p>
+          </div>
+          <div class="tile-art">
+            <div class="ui">
+              <p class="ui-head">New game · Class 10 Science</p>
+              <p style="margin:0 0 .4rem"><span class="ui-chip on">Ch. 1</span><span class="ui-chip on">Ch. 3</span><span class="ui-chip">Ch. 4</span><span class="ui-chip">Ch. 6</span></p>
+              <div class="ui-row"><span>Easy / Medium / Hard</span><b>6 / 8 / 4</b></div>
+              <div class="ui-row"><span>MCQ</span><b>×12</b></div>
+              <div class="ui-row"><span>Assertion–reason</span><b>×6</b></div>
+              <p style="margin:.6rem 0 0"><span class="ui-chip on">Auto-fill</span><span class="ui-chip">Shuffle</span><span class="ui-chip">Preview</span></p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PILLAR 2 — STUDENTS: LEARN ================= -->
+  <section class="band" id="students" aria-labelledby="learn-h">
+    <div class="wrap">
+      <p class="kicker reveal">For students — learn</p>
+      <h2 id="learn-h" class="reveal" style="max-width:18ch">Everything for the chapter, in one place.</h2>
+      <p class="sub reveal">Organised the way the school year actually runs: by class, by subject, by chapter.</p>
+
+      <div class="bento">
+        <article class="tile t-wide reveal">
+          <div>
+            <h3>Chapter-wise lessons</h3>
+            <p>Organised by class and subject, in the chapter order your teachers already teach in. A student opens the chapter and finds the lesson, the video, the flashcards and the practice set together.</p>
+          </div>
+          <div class="tile-art">
+            <div class="ui">
+              <p class="ui-head">Class 10 · Science</p>
+              <div class="ui-row"><span>1 · Chemical Reactions</span><b>Done</b></div>
+              <div class="ui-row"><span>2 · Acids, Bases &amp; Salts</span><b>Done</b></div>
+              <div class="ui-row"><span>3 · Metals &amp; Non-metals</span><b>4 / 9</b></div>
+              <div class="ui-row"><span>4 · Carbon Compounds</span><b>—</b></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="tile t-tall reveal">
+          <h3>Video lectures</h3>
+          <p>Attached to the chapter they belong to — for the student who missed the period, and the one who needs it twice.</p>
+          <div class="tile-art">
+            <div class="ui">
+              <p class="ui-head">Ch. 3 · Metals</p>
+              <div style="display:flex;align-items:center;gap:.5rem">
+                <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="url(#bg)"/><path d="M10 8l6 4-6 4z" fill="#fff"/></svg>
+                <span>Reactivity series · 14:20</span>
+              </div>
+              <div class="ui-meter" style="margin-top:.55rem"><i style="width:62%"></i></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="tile t-third reveal">
+          <h3>Flashcards</h3>
+          <p>Quick revision on the definitions, formulae and reactions that come up every single year.</p>
+          <div class="tile-art"><div class="ui"><p class="ui-head">Ch. 1 · card 7 of 24</p><p class="ui-q" style="margin:0">Define: oxidation</p><div class="ui-row" style="margin-top:.4rem"><span>Tap to flip</span><b>Known · 18</b></div></div></div>
+        </article>
+
+        <article class="tile t-third reveal">
+          <h3>Personal notes</h3>
+          <p>Students keep their own notes against a chapter, so revision notes sit next to the lesson instead of in a lost notebook.</p>
+          <div class="tile-art"><div class="ui"><p class="ui-head">My notes · Ch. 3</p><div class="ui-row"><span>Reactivity series mnemonic</span></div><div class="ui-row"><span>Ask sir: why Zn not Cu?</span></div></div></div>
+        </article>
+
+        <article class="tile t-third reveal">
+          <h3>Proper notation</h3>
+          <p>Math and chemistry render correctly with KaTeX — subscripts, fractions and balanced equations, not flattened text.</p>
+          <div class="tile-art">
+            <div class="ui" style="text-align:center;font-size:.9375rem;font-weight:600">
+              2Al + 3CuSO₄ → Al₂(SO₄)₃ + 3Cu
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== PILLAR 3 — STUDENTS: PRACTISE ============== -->
+  <section class="band band-tint" id="practise" aria-labelledby="practise-h">
+    <div class="wrap">
+      <p class="kicker reveal">For students — practise and compete</p>
+      <h2 id="practise-h" class="reveal" style="max-width:18ch">Practice that tells them where they stand.</h2>
+      <p class="sub reveal">Instant results, chapter by chapter, and a leaderboard that makes revision feel like a match.</p>
+
+      <div class="bento">
+        <article class="tile t-tall reveal">
+          <h3>Practice by chapter or topic</h3>
+          <p>With difficulty levels, so a student can warm up on the easy set or go straight at the hard one.</p>
+          <div class="tile-art">
+            <div class="ui">
+              <p style="margin:0"><span class="ui-chip">Easy</span><span class="ui-chip on">Medium</span><span class="ui-chip">Hard</span></p>
+              <div class="ui-row" style="margin-top:.4rem"><span>Ch. 3 · Metals</span><b>20 Q</b></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="tile t-wide reveal">
+          <div>
+            <h3>Online tests with instant results</h3>
+            <p>No collecting answer sheets, no overnight correction, no waiting a week to find out the score. The student sees the result and the chapter breakdown the moment they submit.</p>
+          </div>
+          <div class="tile-art">
+            <div class="ui">
+              <p class="ui-head">Weekly test · submitted</p>
+              <div class="ui-row"><span>Score</span><b>34 / 40</b></div>
+              <div class="ui-row"><span>Chemical Reactions</span><span class="ui-meter"><i class="good" style="width:92%"></i></span></div>
+              <div class="ui-row"><span>Acids &amp; Bases</span><span class="ui-meter"><i class="mid" style="width:55%"></i></span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="tile t-third reveal">
+          <h3>Progress per chapter</h3>
+          <p>Each student sees which chapters are done, which are shaky, and which they have not opened yet.</p>
+          <div class="tile-art"><div class="ui"><p class="ui-head">My progress</p><div class="ui-row"><span>Ch. 1</span><span class="ui-meter"><i class="good" style="width:90%"></i></span></div><div class="ui-row"><span>Ch. 2</span><span class="ui-meter"><i class="mid" style="width:52%"></i></span></div><div class="ui-row"><span>Ch. 3</span><span class="ui-meter"><i class="bad" style="width:18%"></i></span></div></div></div>
+        </article>
+
+        <article class="tile t-third reveal">
+          <h3>Class and school leaderboards</h3>
+          <p>Section against section, and across the whole school — the reason they come back without being told to.</p>
+          <div class="tile-art">
+            <div class="ui">
+              <div class="ui-rank top"><b>1</b> 10-B · Aarav S.</div>
+              <div class="ui-rank"><b>2</b> 10-A · Meher K.</div>
+              <div class="ui-rank"><b>3</b> 10-B · Ishan R.</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="tile t-third reveal">
+          <h3>Doubt box</h3>
+          <p>A student asks a question against the chapter and a teacher answers it. No separate app, no late-night WhatsApp group.</p>
+          <div class="tile-art"><div class="ui"><p class="ui-head">Doubts · Ch. 3 · 2 open</p><div class="ui-row"><span>Why is Zn more reactive than Cu?</span></div><div class="ui-row"><span>Answered by Mrs. Nair</span><b>✓</b></div></div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== PILLAR 4 — TEACHERS AND STAFF ============== -->
+  <section class="band" id="teachers" aria-labelledby="teach-h">
+    <div class="wrap">
+      <p class="kicker reveal">For teachers and school staff</p>
+      <h2 id="teach-h" class="reveal" style="max-width:20ch">One question bank. Papers, tests, games and analytics come out of it.</h2>
+
+      <div class="bento">
+        <article class="tile t-wide reveal">
+          <div>
+            <h3>The question bank</h3>
+            <p>MCQ, assertion–reason, fill in the blanks, short and long answer, and case or cluster questions — tagged by chapter and difficulty, so every other feature on this page has something to draw from.</p>
+          </div>
+          <div class="tile-art">
+            <div class="ui">
+              <p class="ui-head">Class 10 · Science · all chapters</p>
+              <p style="margin:0"><span class="ui-chip on">MCQ</span><span class="ui-chip">Assertion–reason</span><span class="ui-chip">Fill in the blanks</span><span class="ui-chip">Short answer</span><span class="ui-chip">Long answer</span><span class="ui-chip">Case study</span></p>
+            </div>
+          </div>
+        </article>
+
+        <article class="tile t-tall reveal">
+          <h3>Import what you already have</h3>
+          <p>Pull questions in from Word, PDF or scanned images with OCR. Ten years of old papers become one searchable bank.</p>
+          <div class="tile-art">
+            <div class="ui">
+              <div class="ui-row"><span>2019-Prelim.pdf</span><b>86 Q</b></div>
+              <div class="ui-row"><span>Unit-test-scan.jpg</span><b>24 Q</b></div>
+              <div class="ui-row"><span>Ch4-bank.docx</span><b>52 Q</b></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="tile t-tall reveal">
+          <h3>Written test paper creator</h3>
+          <p>Auto-fill by question type and chapter, then adjust by hand until the paper reads the way you want it to.</p>
+          <div class="tile-art"><div class="ui"><p class="ui-head">Half-yearly · Class 10</p><div class="ui-row"><span>Section A · MCQ</span><b>×20</b></div><div class="ui-row"><span>Section B · Short</span><b>×6</b></div><p style="margin:.5rem 0 0"><span class="ui-chip on">Auto-fill</span><span class="ui-chip">Reorder</span></p></div></div>
+        </article>
+
+        <article class="tile t-wide reveal">
+          <div>
+            <h3>Analytics at three levels</h3>
+            <p>Class, chapter and student. A HOD can see that 10-B is fine on Chemical Reactions and falling apart on Acids and Bases — and which eleven children need the reteach.</p>
+          </div>
+          <div class="tile-art">
+            <div class="ui">
+              <p class="ui-head">Class 10-B · chapter mastery</p>
+              <div class="ui-row"><span>Chemical Reactions</span><span class="ui-meter"><i class="good" style="width:88%"></i></span></div>
+              <div class="ui-row"><span>Acids &amp; Bases</span><span class="ui-meter"><i class="bad" style="width:41%"></i></span></div>
+              <div class="ui-row"><span>Metals</span><span class="ui-meter"><i class="mid" style="width:67%"></i></span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="tile t-third reveal">
+          <h3>Weekly and baseline tests</h3>
+          <p>Run a "zero" test to see where a class starts the year, then weekly tests to watch it move.</p>
+          <div class="tile-art"><div class="ui"><p class="ui-head">Class 10-B</p><div class="ui-row"><span>Zero test · April</span><b>51%</b></div><div class="ui-row"><span>Weekly 12 · October</span><b>74%</b></div></div></div>
+        </article>
+
+        <article class="tile t-third reveal">
+          <h3>Export to PDF and Excel</h3>
+          <p>Papers and results come out as files you can print, file, or hand to the exam committee.</p>
+          <div class="tile-art"><div class="ui"><p class="ui-head">Export</p><div class="ui-row"><span>Class10-Prelim.pdf</span><b>PDF</b></div><div class="ui-row"><span>Results-10B.xlsx</span><b>Excel</b></div></div></div>
+        </article>
+
+        <article class="tile t-third reveal">
+          <h3>People management</h3>
+          <p>Add students, approve sign-ups and assign classes. Your office keeps control of the roll.</p>
+          <div class="tile-art"><div class="ui"><p class="ui-head">People</p><div class="ui-row"><span>Pending approvals</span><b>14</b></div><div class="ui-row"><span>Class 10-B</span><b>41 students</b></div></div></div>
+        </article>
+
+        <article class="tile t-full reveal">
+          <h3>Chemistry toolkit</h3>
+          <p style="max-width:52ch">Interactive periodic table, equation writer, Lewis structure builder with a 3D view, organic structure generator, a compounds and common-names database, glossary, constants, unit conversions and formula sheets.</p>
+          <div class="tile-art">
+            <div class="ui" style="display:grid;gap:.75rem;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr))">
+              <div>
+                <p class="ui-head">Periodic table</p>
+                <div class="ui-pt">
+                  <span>H</span><span>He</span><span>Li</span><span>Be</span><span class="hot">C</span><span>N</span>
+                  <span class="hot">O</span><span>F</span><span>Ne</span><span>Na</span><span>Mg</span><span>Al</span>
+                </div>
+              </div>
+              <div>
+                <p class="ui-head">Equation writer</p>
+                <p style="margin:0;font-weight:600">2Al + 3CuSO₄ →<br>Al₂(SO₄)₃ + 3Cu</p>
+              </div>
+              <div>
+                <p class="ui-head">Lewis structure · 3D</p>
+                <svg viewBox="0 0 90 50" style="width:100%;height:auto" aria-hidden="true">
+                  <line x1="22" y1="25" x2="45" y2="14" stroke="currentColor" stroke-width="1.5" opacity=".45"/>
+                  <line x1="45" y1="14" x2="68" y2="25" stroke="currentColor" stroke-width="1.5" opacity=".45"/>
+                  <line x1="45" y1="14" x2="45" y2="40" stroke="currentColor" stroke-width="1.5" opacity=".45"/>
+                  <circle cx="45" cy="14" r="8" fill="url(#bg)"/>
+                  <circle cx="22" cy="25" r="6" fill="currentColor" opacity=".3"/>
+                  <circle cx="68" cy="25" r="6" fill="currentColor" opacity=".3"/>
+                  <circle cx="45" cy="40" r="6" fill="currentColor" opacity=".3"/>
+                </svg>
+              </div>
+              <div>
+                <p class="ui-head">Constants &amp; units</p>
+                <div class="ui-row"><span>N<sub>A</sub></span><b>6.022×10²³</b></div>
+                <div class="ui-row"><span>1 atm</span><b>101.3 kPa</b></div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== WHO IT'S FOR ====================== -->
+  <section class="band band-tint" aria-labelledby="roles-h">
+    <div class="wrap">
+      <p class="kicker reveal">Three people have to say yes</p>
+      <h2 id="roles-h" class="reveal" style="max-width:20ch">What each of them gets out of it.</h2>
+
+      <div class="roles">
+        <article class="role-card reveal">
+          <p class="who">The principal or trustee</p>
+          <h3>Visibility, and one vendor.</h3>
+          <ul>
+            <li>Analytics at class, chapter and student level across the department</li>
+            <li>Results and papers exported to PDF and Excel for the exam committee</li>
+            <li>Baseline "zero" tests at the start of the year to measure against</li>
+            <li>People management: sign-up approvals and class assignment stay with your office</li>
+          </ul>
+        </article>
+
+        <article class="role-card lead reveal">
+          <p class="who">The science teacher</p>
+          <h3>The week's paper, done before lunch.</h3>
+          <ul>
+            <li>One question bank, built from your own old papers via Word, PDF and OCR import</li>
+            <li>Auto-fill a written paper by chapter and question type, then edit by hand</li>
+            <li>Build a Classroom Quiz, Live Quiz or crossword from the same bank in minutes</li>
+            <li>Answer doubts against the chapter instead of in a WhatsApp group at 11pm</li>
+          </ul>
+        </article>
+
+        <article class="role-card reveal">
+          <p class="who">The student in class 8 to 12</p>
+          <h3>A reason to open the chapter.</h3>
+          <ul>
+            <li>Lessons, video lectures, flashcards and personal notes per chapter</li>
+            <li>Practice by topic and difficulty, with instant results</li>
+            <li>Class and school leaderboards</li>
+            <li>The games everyone plays together in the last period</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= HOW IT WORKS ========================= -->
+  <section class="band band-dark" id="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <p class="kicker reveal">How it works</p>
+      <h2 id="how-h" class="reveal" style="max-width:18ch">Four steps, and the setup work is ours.</h2>
+      <p class="sub reveal">Schools worry about onboarding effort. Here is all of it.</p>
+
+      <ol class="steps">
+        <li class="step reveal">
+          <h3>We set up your school</h3>
+          <p>Classes, sections, subjects and staff accounts configured for you.</p>
+        </li>
+        <li class="step reveal">
+          <h3>Your staff import or author content</h3>
+          <p>Old papers come in from Word, PDF and scans; new questions get written straight into the bank.</p>
+        </li>
+        <li class="step reveal">
+          <h3>Students get accounts</h3>
+          <p>Add them in bulk or approve their sign-ups, then assign each one to a class.</p>
+        </li>
+        <li class="step reveal">
+          <h3>You watch the analytics</h3>
+          <p>Class, chapter and student level, from the first weekly test onward.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- =========================== PRICING =========================== -->
+  <section class="band" id="pricing" aria-labelledby="price-h">
+    <div class="wrap">
+      <p class="kicker reveal">Pricing</p>
+      <h2 id="price-h" class="reveal" style="max-width:18ch">Annual, per student, billed to the school.</h2>
+      <p class="sub reveal">Nothing charged to parents, no per-feature add-ons, and no self-serve checkout — every school gets a written quote after the demo.</p>
+
+      <!-- TODO: PLACEHOLDER PRICING. Replace every ₹XXX with the real annual per-student
+           figure, and add minimum student counts, before this page goes live. -->
+      <div class="ptable reveal">
+        <table>
+          <caption class="sr">Plan comparison. Prices are placeholders pending finalisation.</caption>
+          <thead>
+            <tr>
+              <th scope="col"><span class="sr">Feature</span></th>
+              <th scope="col">
+                <div class="p-name">Essential</div>
+                <div class="p-price">₹XXX<span>/student /year · placeholder</span></div>
+              </th>
+              <th scope="col" class="col-pop">
+                <span class="p-flag">Most popular</span>
+                <div class="p-name">Complete</div>
+                <div class="p-price">₹XXX<span>/student /year · placeholder</span></div>
+              </th>
+              <th scope="col">
+                <div class="p-name">Campus</div>
+                <div class="p-price">₹XXX<span>/student /year · placeholder</span></div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Chapter-wise lessons, flashcards and notes</th><td class="tick">✓</td><td class="col-pop tick">✓</td><td class="tick">✓</td></tr>
+            <tr><th scope="row">Practice by chapter and topic, with difficulty levels</th><td class="tick">✓</td><td class="col-pop tick">✓</td><td class="tick">✓</td></tr>
+            <tr><th scope="row">Online tests with instant results</th><td class="tick">✓</td><td class="col-pop tick">✓</td><td class="tick">✓</td></tr>
+            <tr><th scope="row">Question bank and written paper creator</th><td class="tick">✓</td><td class="col-pop tick">✓</td><td class="tick">✓</td></tr>
+            <tr><th scope="row">People management and sign-up approvals</th><td class="tick">✓</td><td class="col-pop tick">✓</td><td class="tick">✓</td></tr>
+            <tr><th scope="row">Classroom Quiz, Live Quiz and Crossword</th><td class="dash">—</td><td class="col-pop tick">✓</td><td class="tick">✓</td></tr>
+            <tr><th scope="row">Video lectures</th><td class="dash">—</td><td class="col-pop tick">✓</td><td class="tick">✓</td></tr>
+            <tr><th scope="row">Weekly and baseline "zero" tests</th><td class="dash">—</td><td class="col-pop tick">✓</td><td class="tick">✓</td></tr>
+            <tr><th scope="row">Analytics at class, chapter and student level</th><td class="dash">—</td><td class="col-pop tick">✓</td><td class="tick">✓</td></tr>
+            <tr><th scope="row">Doubt box and leaderboards</th><td class="dash">—</td><td class="col-pop tick">✓</td><td class="tick">✓</td></tr>
+            <tr><th scope="row">Full chemistry toolkit, including the 3D Lewis builder</th><td class="dash">—</td><td class="col-pop dash">—</td><td class="tick">✓</td></tr>
+            <tr><th scope="row">Bulk import of papers and scans, multi-branch exports</th><td class="dash">—</td><td class="col-pop dash">—</td><td class="tick">✓</td></tr>
+            <tr><th scope="row">Staff training for each campus</th><td class="dash">—</td><td class="col-pop dash">—</td><td class="tick">✓</td></tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th scope="row"><span class="sr">Get started</span></th>
+              <td><a class="btn btn-line btn-sm btn-block" href="#demo">Book a free demo</a></td>
+              <td class="col-pop"><a class="btn btn-primary btn-sm btn-block" href="#demo">Book a free demo</a></td>
+              <td><a class="btn btn-line btn-sm btn-block" href="#demo">Book a free demo</a></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <!-- same three plans, stacked, for narrow screens -->
+      <div class="pcards">
+        <article class="pcard reveal">
+          <div class="p-name">Essential</div>
+          <div class="p-price">₹XXX<span>/student /year · placeholder</span></div>
+          <ul>
+            <li>Lessons, flashcards and notes</li>
+            <li>Practice and online tests</li>
+            <li>Question bank and paper creator</li>
+            <li>People management</li>
+          </ul>
+          <a class="btn btn-line btn-block" href="#demo">Book a free demo</a>
+        </article>
+        <article class="pcard pop reveal">
+          <span class="p-flag">Most popular</span>
+          <div class="p-name">Complete</div>
+          <div class="p-price">₹XXX<span>/student /year · placeholder</span></div>
+          <ul>
+            <li>Everything in Essential</li>
+            <li>Classroom Quiz, Live Quiz, Crossword</li>
+            <li>Video lectures</li>
+            <li>Weekly and baseline tests</li>
+            <li>Analytics, doubt box, leaderboards</li>
+          </ul>
+          <a class="btn btn-primary btn-block" href="#demo">Book a free demo</a>
+        </article>
+        <article class="pcard reveal">
+          <div class="p-name">Campus</div>
+          <div class="p-price">₹XXX<span>/student /year · placeholder</span></div>
+          <ul>
+            <li>Everything in Complete</li>
+            <li>Full chemistry toolkit with 3D Lewis builder</li>
+            <li>Bulk import and multi-branch exports</li>
+            <li>Staff training for each campus</li>
+          </ul>
+          <a class="btn btn-line btn-block" href="#demo">Book a free demo</a>
+        </article>
+      </div>
+
+      <p class="p-note reveal">Figures above are placeholders while pricing is being finalised.</p>
+    </div>
+  </section>
+
+  <!--
+    ============================ TESTIMONIALS ============================
+    Deliberately absent. Real, attributed quotes from schools that have
+    actually used the platform go here — principal or HOD name, designation,
+    school name and city, with written permission on file.
+    Do not fill this with sample or illustrative quotes.
+
+    <section class="band" aria-labelledby="voices-h">
+      <div class="wrap">
+        <h2 id="voices-h">What schools say</h2>
+        ... real quotes only ...
+      </div>
+    </section>
+  -->
+
+  <!-- ============================= FAQ ============================= -->
+  <section class="band band-tint" id="faq" aria-labelledby="faq-h">
+    <div class="wrap">
+      <p class="kicker reveal">FAQ</p>
+      <h2 id="faq-h" class="reveal" style="max-width:16ch">The questions principals actually ask.</h2>
+
+      <div class="faq-cols">
+        <div class="faqs">
+          <details class="reveal">
+            <summary>Is our students' data safe, and where is it stored?</summary>
+            <div class="a">
+              <p>The school owns its data. We store only what is needed to run classes — a student's name, class and login, plus their practice and test records. We do not sell data and there is no advertising on the platform.</p>
+              <!-- TODO: confirm hosting provider/region and the retention window, then state them here. -->
+              <p>Hosting region, retention period and our data-processing terms are confirmed to you in writing before you sign, so your trustees can read them on paper rather than take our word for it.</p>
+            </div>
+          </details>
+
+          <details class="reveal">
+            <summary>Is the content aligned to CBSE?</summary>
+            <div class="a">
+              <p>Lessons, question banks, practice sets and tests are organised chapter-wise by the CBSE syllabus for classes 8 to 12, in the order your teachers teach. Your own staff can add or edit questions in any chapter, so anything specific to how your school teaches a topic goes straight in.</p>
+            </div>
+          </details>
+
+          <details class="reveal">
+            <summary>How long does setup take?</summary>
+            <div class="a">
+              <p>We do the setup: classes, sections, subjects and staff accounts. Your side of it is naming a coordinator and handing over the class list.</p>
+              <!-- TODO: replace with the real typical onboarding timeline once schools are live. -->
+              <p>Typical onboarding runs about <strong>[X working days]</strong> — a placeholder until we commit to a date in your quote. Teachers can start authoring questions on day one; they do not wait for us.</p>
+            </div>
+          </details>
+
+          <details class="reveal">
+            <summary>What devices do we need?</summary>
+            <div class="a">
+              <p>A browser, on whatever you already have — school computers, the teacher's laptop, or phones. Nothing to install from an app store.</p>
+              <p>Classroom Quiz needs one projector or TV and the teacher's device, since the class plays off the one screen. For practice and online tests, students can use a computer lab, shared devices, or their own phones at home.</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="faqs">
+          <details class="reveal">
+            <summary>Does it work on low bandwidth?</summary>
+            <div class="a">
+              <p>Lessons, flashcards, question banks, practice and written tests are text-and-diagram based, so they are light on a slow line. Video lectures are the one part that genuinely needs bandwidth — on a weak connection they are better watched at home.</p>
+              <!-- TODO: confirm the minimum workable bandwidth for Live Quiz and state it here. -->
+              <p>We test the live games on your school's actual connection during the demo, not on ours.</p>
+            </div>
+          </details>
+
+          <details class="reveal">
+            <summary>Can our teachers use their own question papers?</summary>
+            <div class="a">
+              <p>Yes, and most do. Import existing questions from Word files, PDFs or scanned images — the scans go through OCR — and they become part of your school's own question bank. From there the same questions feed written papers, online tests and the classroom games.</p>
+            </div>
+          </details>
+
+          <details class="reveal">
+            <summary>What training and support do we get?</summary>
+            <div class="a">
+              <p>Onboarding includes training for the staff who will do the work: the teachers authoring questions, the ones running classroom games, and the office staff managing students and sign-ups.</p>
+              <!-- TODO: confirm training format (on-site vs online), duration, support channels and hours. -->
+              <p>Training format and support hours are set out in your quote.</p>
+            </div>
+          </details>
+
+          <details class="reveal">
+            <summary>What happens to our data if we stop using Zero?</summary>
+            <div class="a">
+              <p>You take it with you. Question banks, papers and results export to PDF and Excel at any time, including on the way out, so a year of your teachers' work stays yours. Deletion of student records after you leave is covered by the same written terms as hosting and retention.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= DEMO REQUEST ========================= -->
+  <section class="band band-dark" id="demo" aria-labelledby="demo-h">
+    <div class="wrap demo">
+      <div>
+        <p class="kicker reveal">Book a free demo</p>
+        <h2 id="demo-h" class="reveal" style="max-width:14ch">See it on your own chapters.</h2>
+        <p class="sub reveal">
+          Thirty minutes, for your principal, HOD or science coordinator. We run a Classroom Quiz
+          on a chapter your classes are doing this month, and build a test paper live while you watch.
+        </p>
+        <ul class="reach reveal">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 3h4l2 5-3 2a12 12 0 0 0 6 6l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>
+            <span><b>Call or WhatsApp</b>+91 XXXXX XXXXX <span class="hint">(placeholder)</span></span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            <span><b>Email</b>schools@example.com <span class="hint">(placeholder)</span></span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg>
+            <span><b>Demo slots</b>Weekdays, before or after school hours</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="form-card reveal">
+        <form id="demo-form" novalidate>
+          <div class="fields">
+            <div class="field span2">
+              <label for="school">School name</label>
+              <input id="school" name="school" type="text" autocomplete="organization" required aria-describedby="err-school">
+              <p class="err" id="err-school" data-error-for="school"></p>
+            </div>
+
+            <div class="field">
+              <label for="city">City</label>
+              <input id="city" name="city" type="text" autocomplete="address-level2" required aria-describedby="err-city">
+              <p class="err" id="err-city" data-error-for="city"></p>
+            </div>
+
+            <div class="field">
+              <label for="person">Contact person</label>
+              <input id="person" name="person" type="text" autocomplete="name" required aria-describedby="err-person">
+              <p class="err" id="err-person" data-error-for="person"></p>
+            </div>
+
+            <div class="field span2">
+              <label for="role">Your role</label>
+              <select id="role" name="role" required aria-describedby="err-role">
+                <option value="">Select a role</option>
+                <option>Principal</option>
+                <option>Trustee / Management</option>
+                <option>Vice Principal</option>
+                <option>HOD / Science coordinator</option>
+                <option>Teacher</option>
+                <option>Admin / IT</option>
+                <option>Other</option>
+              </select>
+              <p class="err" id="err-role" data-error-for="role"></p>
+            </div>
+
+            <div class="field span2 phone">
+              <label for="phone">Phone or WhatsApp number</label>
+              <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel"
+                     placeholder="98765 43210" required aria-describedby="err-phone phone-hint">
+              <p class="err" id="err-phone" data-error-for="phone"></p>
+              <p class="hint" id="phone-hint" style="margin:.35rem 0 0">This is how we will reach you — it is the fastest way to fix a slot.</p>
+            </div>
+
+            <div class="field span2">
+              <label for="email">Email <span class="hint">(optional)</span></label>
+              <input id="email" name="email" type="email" autocomplete="email" aria-describedby="err-email">
+              <p class="err" id="err-email" data-error-for="email"></p>
+            </div>
+
+            <fieldset class="field span2" style="border:0;padding:0;margin:0">
+              <legend>Classes you're interested in</legend>
+              <div class="chips" role="group" aria-describedby="err-classes">
+                <label class="chip"><input type="checkbox" name="classes" value="8"><span>Class 8</span></label>
+                <label class="chip"><input type="checkbox" name="classes" value="9"><span>Class 9</span></label>
+                <label class="chip"><input type="checkbox" name="classes" value="10"><span>Class 10</span></label>
+                <label class="chip"><input type="checkbox" name="classes" value="11"><span>Class 11</span></label>
+                <label class="chip"><input type="checkbox" name="classes" value="12"><span>Class 12</span></label>
+              </div>
+              <p class="err" id="err-classes" data-error-for="classes"></p>
+            </fieldset>
+
+            <div class="field span2">
+              <label for="message">Anything specific you want to see <span class="hint">(optional)</span></label>
+              <textarea id="message" name="message" rows="3" placeholder="e.g. the Class 10 Chemical Reactions crossword"></textarea>
+            </div>
+          </div>
+
+          <div class="form-foot">
+            <button class="btn btn-primary btn-block" type="submit">Book a free demo</button>
+            <p>We use these details only to arrange your demo. <a href="#">Privacy</a>.</p>
+            <p class="err" id="err-form" aria-live="polite"></p>
+          </div>
+        </form>
+
+        <div class="success" id="demo-success" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/><path d="M7.5 12.5l3 3 6-6.5"/>
+          </svg>
+          <h3 style="margin-top:1rem">Got it — we'll call you.</h3>
+          <p>We will ring the number you gave us on the next working day to fix a slot. If it is urgent, call or WhatsApp the number alongside.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top" aria-label="Zero, home">
+          <svg viewBox="0 0 40 40" aria-hidden="true">
+            <rect width="40" height="40" rx="11" fill="url(#bg)"/>
+            <path d="M16 10h8v6l5 10a3.4 3.4 0 0 1-3 5H14a3.4 3.4 0 0 1-3-5l5-10z" fill="#fff" fill-opacity=".96"/>
+            <path d="M13.6 23h12.8l1.5 3H12.1z" fill="#FF3B6D"/>
+          </svg>
+          Zero
+        </a>
+        <p style="margin-top:1rem;max-width:26rem;font-size:.9375rem">
+          One platform for CBSE science teaching, classes 8 to 12 — lessons, practice, tests,
+          question banks, analytics and live classroom games.
+        </p>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <!-- TODO: replace all placeholder contact details -->
+        <ul>
+          <li>+91 XXXXX XXXXX</li>
+          <li><a href="mailto:schools@example.com">schools@example.com</a></li>
+          <li>[Address line 1]<br>[City, State, PIN]</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>On this page</h4>
+        <ul>
+          <li><a href="#games">Classroom games</a></li>
+          <li><a href="#teachers">For teachers</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#demo">Book a free demo</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-base">
+      <span>© <span id="year">2026</span> Zero. All rights reserved.</span>
+      <a href="#">Privacy policy</a>
+      <a href="#">Terms of use</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="app.js" defer></script>
+</body>
+</html>
