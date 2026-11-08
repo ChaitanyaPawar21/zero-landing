@@ -1,8 +1,8 @@
 /* ========================================================================
    Zero — marketing site
    Direction: "field notebook". Editorial serif display on warm paper,
-   hairline rules instead of filled bands, one teal brand colour, saffron
-   used about five times on the whole page.
+   hairline rules instead of filled bands, one pink-to-orange brand gradient.
+   Pink and orange fail contrast on parchment, so in light they are fills only.
    Motion follows the craft rules: custom curves, nothing over 300ms for UI,
    transform/opacity only, hover gated to real pointers.
    ===================================================================== */
@@ -11,45 +11,52 @@
   color-scheme: light;
 
   /* --- brand ----------------------------------------------------- */
-  --brand: #0f766e;
-  --brand-2: #0b5d56;
-  --brand-ink: #0a4f49;          /* brand as text on paper */
-  --accent: #d9901f;             /* saffron. rationed. */
-  --btn-bg: #0f766e;
-  --btn-fg: #ffffff;
+  --brand: #FF3B6D;
+  --brand-2: #FF9500;
+  --brand-ink: #7A5230;          /* accent text: #FF3B6D is only 2.6:1 on parchment */
+  --accent: #FF9500;
+  --btn-bg: linear-gradient(90deg, #FF3B6D, #FF9500);
+  --btn-fg: #1A0F00;             /* on the gradient; white fails on both ends */
 
   /* --- surfaces -------------------------------------------------- */
-  --paper: #fbf9f5;
-  --paper-2: #f3efe7;
-  --surface: #ffffff;
-  --surface-2: #f7f4ee;
+  --paper: #F2E3CC;
+  --paper-2: #F5E8CC;
+  --surface: #FDF3D8;
+  --surface-2: #F5E8CC;
 
   /* --- text ------------------------------------------------------ */
-  --ink: #0d1b19;
-  --ink-2: #4a5956;
-  --ink-3: #788683;
+  --ink: #1A0F00;
+  --ink-2: #5C3D1E;
+  --ink-3: #7A5230;
 
   /* --- lines ----------------------------------------------------- */
-  --line: #e4ded2;
-  --line-2: #efeae0;
+  --line: #C9A87A;
+  --line-2: #E8D5B8;
 
   /* --- semantic (inside the drawn product UI) -------------------- */
-  --ok: #15803d;
-  --mid: #b45309;
-  --bad: #b91c1c;
-  --cross-off: #22312e;   /* blocked crossword squares */
+  --ok: #22C55E;
+  --mid: #F59E0B;
+  --bad: #EF4444;
+  --cross-off: #C49A6C;   /* blocked crossword squares */
+
+  /* --- screenshot panels: the dark product UI sits on these ------ */
+  --t-a: #F4C95D;
+  --t-b: #F7A9BA;
+  --t-c: #9FC7EC;
+  --t-d: #9ED6B0;
+  --t-e: #C6B4F0;
 
   /* --- the inverted panel: same near-black in both themes -------- */
-  --inv-bg: #0b1513;
-  --inv-surface: #122020;
-  --inv-ink: #eaf2ef;
-  --inv-ink-2: #9fb3ae;
-  --inv-line: #22322f;
-  --inv-brand: #2dd4bf;
+  --inv-bg: #111111;
+  --inv-surface: #1A1A1A;
+  --inv-ink: #FFFFFF;
+  --inv-ink-2: #D1D5DB;
+  --inv-line: #2A2A2A;
+  --inv-brand: #FF3B6D;
 
-  --shadow-s: 0 1px 2px rgba(13, 27, 25, .04), 0 2px 8px -4px rgba(13, 27, 25, .08);
-  --shadow: 0 1px 2px rgba(13, 27, 25, .05), 0 12px 28px -14px rgba(13, 27, 25, .18);
-  --shadow-l: 0 2px 6px rgba(13, 27, 25, .06), 0 32px 56px -24px rgba(13, 27, 25, .26);
+  --shadow-s: 0 1px 2px rgba(26, 15, 0, .04), 0 2px 8px -4px rgba(26, 15, 0, .08);
+  --shadow: 0 1px 2px rgba(26, 15, 0, .05), 0 12px 28px -14px rgba(26, 15, 0, .18);
+  --shadow-l: 0 2px 6px rgba(26, 15, 0, .06), 0 32px 56px -24px rgba(26, 15, 0, .26);
 
   /* --- shape ----------------------------------------------------- */
   --r-s: .5rem;
@@ -75,25 +82,18 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --brand: #2dd4bf;
-    --brand-2: #5eead4;
-    --brand-ink: #5eead4;
-    --accent: #f0b65c;
-    --btn-bg: #2dd4bf;
-    --btn-fg: #06201d;
-    --paper: #0a100f;
-    --paper-2: #0f1716;
-    --surface: #131c1a;
-    --surface-2: #17221f;
-    --ink: #e8efec;
-    --ink-2: #a3b3af;
-    --ink-3: #778783;
-    --line: #243330;
-    --line-2: #1b2725;
-    --ok: #4ade80;
-    --mid: #fbbf24;
-    --bad: #f87171;
-    --cross-off: #050a09;
+    --brand-ink: #FF3B6D;
+    --paper: #0D0D0D;
+    --paper-2: #111111;
+    --surface: #1A1A1A;
+    --surface-2: #1E1E22;
+    --ink: #FFFFFF;
+    --ink-2: #D1D5DB;
+    --ink-3: #9CA3AF;
+    --line: #2A2A2A;
+    --line-2: #1E1E22;
+    --cross-off: #0D0D0D;
+    --t-a: #3D3112; --t-b: #3D1A25; --t-c: #142B40; --t-d: #143323; --t-e: #2A1E42;
     --shadow-s: 0 1px 2px rgba(0, 0, 0, .5), 0 2px 8px -4px rgba(0, 0, 0, .6);
     --shadow: 0 1px 2px rgba(0, 0, 0, .5), 0 14px 30px -14px rgba(0, 0, 0, .8);
     --shadow-l: 0 2px 6px rgba(0, 0, 0, .6), 0 34px 60px -24px rgba(0, 0, 0, .9);
@@ -101,25 +101,18 @@
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --brand: #2dd4bf;
-  --brand-2: #5eead4;
-  --brand-ink: #5eead4;
-  --accent: #f0b65c;
-  --btn-bg: #2dd4bf;
-  --btn-fg: #06201d;
-  --paper: #0a100f;
-  --paper-2: #0f1716;
-  --surface: #131c1a;
-  --surface-2: #17221f;
-  --ink: #e8efec;
-  --ink-2: #a3b3af;
-  --ink-3: #778783;
-  --line: #243330;
-  --line-2: #1b2725;
-  --ok: #4ade80;
-  --mid: #fbbf24;
-  --bad: #f87171;
-  --cross-off: #050a09;
+  --brand-ink: #FF3B6D;
+  --paper: #0D0D0D;
+  --paper-2: #111111;
+  --surface: #1A1A1A;
+  --surface-2: #1E1E22;
+  --ink: #FFFFFF;
+  --ink-2: #D1D5DB;
+  --ink-3: #9CA3AF;
+  --line: #2A2A2A;
+  --line-2: #1E1E22;
+  --cross-off: #0D0D0D;
+  --t-a: #3D3112; --t-b: #3D1A25; --t-c: #142B40; --t-d: #143323; --t-e: #2A1E42;
   --shadow-s: 0 1px 2px rgba(0, 0, 0, .5), 0 2px 8px -4px rgba(0, 0, 0, .6);
   --shadow: 0 1px 2px rgba(0, 0, 0, .5), 0 14px 30px -14px rgba(0, 0, 0, .8);
   --shadow-l: 0 2px 6px rgba(0, 0, 0, .6), 0 34px 60px -24px rgba(0, 0, 0, .9);
@@ -172,10 +165,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 a { color: inherit; }
 svg { display: block; }
 strong, b { font-weight: 600; }
-::selection { background: var(--brand); color: #fff; }
+::selection { background: var(--brand); color: var(--btn-fg); }
 
 :focus-visible {
-  outline: 2px solid var(--brand);
+  outline: 2px solid var(--ink);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -241,7 +234,7 @@ em.flourish { font-style: italic; color: var(--brand-ink); }
 }
 .btn:active { transform: scale(.97); }
 
-.btn-primary { background: var(--btn-bg); color: var(--btn-fg); }
+.btn-primary { background: var(--btn-bg) border-box; color: var(--btn-fg); }
 .btn-line { border-color: var(--line); color: var(--ink); background: transparent; }
 .btn-ghost { color: var(--ink-2); background: transparent; padding-inline: .75rem; }
 .btn-block { width: 100%; }
@@ -275,7 +268,8 @@ em.flourish { font-style: italic; color: var(--brand-ink); }
   text-decoration: none; color: var(--ink);
   font-family: var(--display); font-size: 1.5rem; letter-spacing: -.01em;
 }
-.brand svg { width: 1.75rem; height: 1.75rem; flex: none; }
+.brand .wordmark { width: auto; height: 1.6rem; flex: none; }
+:root:not([data-theme="dark"]) .brand { color: #11182D; } /* logo navy in light; theme ink in dark */
 
 .nav { display: none; margin-left: auto; }
 .nav ul { display: flex; gap: 1.5rem; }
@@ -374,23 +368,44 @@ em.flourish { font-style: italic; color: var(--brand-ink); }
 /* small phones: let the qualifier drop under the number instead of squeezing the label */
 @media (max-width: 26rem) { .facts div { flex-wrap: wrap; } .facts dd span { display: block; } }
 
-/* hero collage */
-.collage {
-  margin-top: clamp(3rem, 6vw, 5rem);
-  display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem;
-  align-items: end;
+/* hero: one big screenshot on a tinted panel, two cards floating off its corners */
+.shots {
+  position: relative; margin: clamp(3rem, 6vw, 5rem) 0 0;
+  padding: clamp(1rem, 4vw, 2.5rem); background: var(--t-a); border-radius: var(--r-l);
 }
-.c-quiz { grid-column: 1 / 13; }
-.c-analytics, .c-paper, .c-lead, .c-pt { display: none; }
+.shots img { display: block; width: 100%; height: auto; border-radius: var(--r); box-shadow: var(--shadow-l); }
+.shots .s-a, .shots .s-b { display: none; }
 @media (min-width: 52rem) {
-  .c-analytics { display: block; grid-column: 1 / 4; }
-  .c-quiz { grid-column: 4 / 10; transform: translateY(1.25rem); box-shadow: var(--shadow-l); }
-  .c-paper { display: block; grid-column: 10 / 13; }
+  .shots { padding: 3.5rem 7rem 4rem; margin-bottom: 2rem; }
+  .shots .s-a, .shots .s-b { display: block; position: absolute; }
+  .shots .s-a { width: 24%; left: 1.5rem; bottom: -2rem; rotate: -3deg; }
+  .shots .s-b { width: 27%; right: 1.5rem; top: -2rem; rotate: 2deg; }
 }
-@media (min-width: 72rem) {
-  .c-lead { display: block; grid-column: 2 / 5; transform: translateY(2rem); }
-  .c-pt { display: block; grid-column: 9 / 12; transform: translateY(2rem); }
+
+/* screenshot framed on a tint, bleeding off the bottom-right corner */
+.shot {
+  background: var(--t-a); border-radius: var(--r); overflow: hidden;
+  aspect-ratio: 4 / 3; padding: 1.25rem 0 0 1.25rem;
 }
+.shot img {
+  display: block; width: 100%; height: 100%;
+  object-fit: cover; object-position: left top;
+  border-radius: var(--r-s) 0 0 0; box-shadow: var(--shadow-l);
+}
+.t-b { background: var(--t-b); } .t-c { background: var(--t-c); }
+.t-d { background: var(--t-d); } .t-e { background: var(--t-e); }
+
+/* sideways tour: full width, edge to edge with only the gutter */
+.strip {
+  --edge: var(--gutter);
+  list-style: none; margin: 0; padding: 0 var(--edge) 1rem;
+  display: grid; grid-auto-flow: column; grid-auto-columns: min(80%, 22rem); gap: 1.25rem;
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--edge);
+  scrollbar-width: thin;
+}
+.tour-card { scroll-snap-align: start; }
+.tour-card h3 { font-family: var(--display); font-size: 1.375rem; margin: 1rem 0 .25rem; }
+.tour-card p { color: var(--ink-2); font-size: .9375rem; margin: 0; }
 
 /* ======================================== drawn product-UI panels */
 .ui {
@@ -419,8 +434,8 @@ em.flourish { font-style: italic; color: var(--brand-ink); }
   background: var(--surface-2); color: var(--ink-3);
   display: grid; place-items: center; font-size: .625rem; font-weight: 600;
 }
-.ui-opt.on { background: var(--brand); border-color: var(--brand); color: #fff; }
-.ui-opt.on b { background: rgba(255, 255, 255, .22); color: #fff; }
+.ui-opt.on { background: var(--brand); border-color: var(--brand); color: var(--btn-fg); }
+.ui-opt.on b { background: rgba(255, 255, 255, .22); color: var(--btn-fg); }
 .ui-row {
   display: flex; align-items: center; justify-content: space-between; gap: .6rem;
   padding: .34rem 0; border-top: 1px solid var(--line-2);
@@ -447,7 +462,7 @@ em.flourish { font-style: italic; color: var(--brand-ink); }
   background: var(--surface-2); color: var(--ink-3);
   display: grid; place-items: center; font-size: .625rem; font-weight: 600;
 }
-.ui-rank.top b { background: var(--accent); color: #2a1a00; }
+.ui-rank.top b { background: var(--accent); color: var(--btn-fg); }
 /* capped: these are grids of squares, so without a cap a wide column turns
    them into billboards */
 .ui-cross { display: grid; grid-template-columns: repeat(6, 1fr); gap: 2px; max-width: 10rem; }
@@ -463,7 +478,7 @@ em.flourish { font-style: italic; color: var(--brand-ink); }
   border: 1px solid var(--line-2);
   display: grid; place-items: center; font-size: .5rem; font-weight: 600; color: var(--ink-3);
 }
-.ui-pt span.hot { background: var(--brand); border-color: var(--brand); color: #fff; }
+.ui-pt span.hot { background: var(--brand); border-color: var(--brand); color: var(--btn-fg); }
 
 /* ====================================================== feature rows */
 /* Alternating text / panel rows on a hairline grid. */
@@ -540,14 +555,14 @@ em.flourish { font-style: italic; color: var(--brand-ink); }
 .plan.pop { background: var(--surface-2); }
 .p-flag {
   display: inline-block; margin-bottom: .6rem;
-  background: var(--accent); color: #2a1a00;
+  background: var(--accent); color: var(--btn-fg);
   font-size: .625rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
   padding: .2rem .5rem; border-radius: 4px;
 }
 .plan-feat { display: grid; gap: .5rem; font-size: .9375rem; color: var(--ink-2); }
 @media (min-width: 40rem) { .plan-feat { grid-template-columns: 1fr 1fr; gap: .5rem 1.5rem; } }
 .plan-feat li { display: flex; gap: .55rem; }
-.plan-feat li svg { width: .9rem; height: .9rem; flex: none; margin-top: .4rem; color: var(--brand); }
+.plan-feat li svg { width: .9rem; height: .9rem; flex: none; margin-top: .4rem; color: var(--brand-ink); }
 .p-note { margin: 1.25rem 0 0; font-size: .875rem; color: var(--ink-3); }
 
 /* ============================================================ faq */
@@ -599,11 +614,10 @@ html:not(.js-ok) .faq-panel { grid-template-rows: 1fr; opacity: 1; transition: n
 /* ======================================================= demo / form */
 .invert {
   background: var(--inv-bg); color: var(--inv-ink);
-  --ink: var(--inv-ink); --ink-2: var(--inv-ink-2); --ink-3: #7f918d;
-  --line: var(--inv-line); --line-2: #1a2422;
-  --surface: var(--inv-surface); --surface-2: #162422;
+  --ink: var(--inv-ink); --ink-2: var(--inv-ink-2); --ink-3: #9CA3AF;
+  --line: var(--inv-line); --line-2: #1E1E22;
+  --surface: var(--inv-surface); --surface-2: #1E1E22;
   --brand-ink: var(--inv-brand);
-  --btn-bg: var(--inv-brand); --btn-fg: #06201d;
 }
 .invert h2, .invert h3 { color: var(--inv-ink); }
 
@@ -634,14 +648,14 @@ html:not(.js-ok) .faq-panel { grid-template-rows: 1fr; opacity: 1; transition: n
   padding: .75rem .85rem;
   transition: border-color .16s var(--ease), background-color .16s var(--ease);
 }
-.field input::placeholder { color: var(--inv-ink-2); opacity: .5; }
+.field input::placeholder { color: var(--ink-3); opacity: 1; }
 .field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible {
   border-color: var(--inv-brand); outline-offset: 1px;
 }
-.field [aria-invalid="true"] { border-color: #f87171; background: rgba(248, 113, 113, .08); }
-.field select option { background: #122020; color: #eaf2ef; }
+.field [aria-invalid="true"] { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 8%, transparent); }
+.field select option { background: var(--inv-surface); color: var(--inv-ink); }
 .phone input { font-variant-numeric: tabular-nums; }
-.err { display: none; color: #fca5a5; font-size: .8125rem; font-weight: 500; margin: .35rem 0 0; }
+.err { display: none; color: var(--bad); font-size: .8125rem; font-weight: 500; margin: .35rem 0 0; }
 .err.show { display: block; }
 
 .chips { display: flex; flex-wrap: wrap; gap: .5rem; }
@@ -653,7 +667,7 @@ html:not(.js-ok) .faq-panel { grid-template-rows: 1fr; opacity: 1; transition: n
   transition: transform .14s var(--ease-out), background-color .16s var(--ease), border-color .16s var(--ease);
 }
 .chip input:active + span { transform: scale(.97); }
-.chip input:checked + span { background: var(--inv-brand); color: #06201d; border-color: var(--inv-brand); font-weight: 600; }
+.chip input:checked + span { background: var(--inv-brand); color: var(--btn-fg); border-color: var(--inv-brand); font-weight: 600; }
 .chip input:focus-visible + span { outline: 2px solid var(--inv-brand); outline-offset: 2px; }
 
 .form-foot { margin-top: 1.5rem; display: grid; gap: .8rem; }
@@ -717,3 +731,67 @@ html:not(.js-ok) .faq-panel { grid-template-rows: 1fr; opacity: 1; transition: n
   .site-head, .menu, .icon-btn, .hero::before { display: none; }
   .js-ok .reveal { opacity: 1; transform: none; }
 }
+
+/* ========================================================== pillars */
+/* The three things the home page actually has to say. */
+.pillars { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r-l); overflow: hidden; }
+@media (min-width: 62rem) { .pillars { grid-template-columns: repeat(3, 1fr); } }
+.pillar { background: var(--paper); padding: 1.75rem 1.5rem; display: flex; flex-direction: column; }
+.sec-alt .pillar { background: var(--paper-2); }
+.pillar .eyebrow {
+  font-family: var(--mono); font-size: .6875rem; letter-spacing: .06em;
+  color: var(--brand-ink); display: block; margin-bottom: .9rem;
+}
+.pillar h3 { font-family: var(--display); font-weight: 400; font-size: 1.5rem; letter-spacing: -.015em; margin-bottom: .4rem; }
+.pillar p { color: var(--ink-2); font-size: .9375rem; margin: 0 0 1.25rem; }
+.pillar .pillar-art { margin-top: auto; }
+
+/* text link with a nudging arrow */
+.more {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .9375rem; font-weight: 600; color: var(--brand-ink);
+  text-decoration: none; margin-top: 1.25rem;
+}
+.more svg { width: .9rem; height: .9rem; transition: transform .22s var(--ease-out); }
+@media (hover: hover) and (pointer: fine) { .more:hover svg { transform: translateX(3px); } }
+
+/* ============================================================ claim */
+/* The differentiator band: human-written questions. */
+.claim-grid { display: grid; gap: 2.5rem; align-items: start; }
+@media (min-width: 64rem) { .claim-grid { grid-template-columns: 1.1fr .9fr; gap: 5rem; } }
+.claim h2 { font-size: clamp(2.25rem, 4.4vw, 3.5rem); max-width: 16ch; }
+.claim .lede { color: var(--inv-ink-2); max-width: 36rem; }
+.claim-points { display: grid; gap: 0; border-top: 1px solid var(--inv-line); }
+.claim-points li { padding: 1.25rem 0; border-bottom: 1px solid var(--inv-line); display: flex; gap: .9rem; }
+.claim-points svg { width: 1.1rem; height: 1.1rem; flex: none; margin-top: .25rem; color: var(--inv-brand); }
+.claim-points b { display: block; color: var(--inv-ink); font-weight: 600; font-size: .9375rem; margin-bottom: .15rem; }
+.claim-points span { color: var(--inv-ink-2); font-size: .9375rem; }
+
+/* a struck-through "AI-generated", to make the point visually */
+.struck { position: relative; color: var(--inv-ink-2); white-space: nowrap; }
+.struck::after {
+  content: ""; position: absolute; left: -.05em; right: -.05em; top: 54%;
+  height: 2px; background: var(--inv-brand); border-radius: 2px;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .45s var(--ease-out) .25s;
+}
+.reveal.in .struck::after, .in.struck::after { transform: scaleX(1); }
+
+/* ======================================================= page head */
+/* Inner pages: a short masthead instead of a hero. */
+.page-head { padding-block: clamp(3rem, 6vw, 5rem) clamp(2.5rem, 5vw, 4rem); border-bottom: 1px solid var(--line); }
+.page-head h1 { font-size: clamp(2.5rem, 5.5vw, 4rem); max-width: 18ch; }
+.page-head .lede { font-size: clamp(1.0625rem, 1.4vw, 1.1875rem); color: var(--ink-2); max-width: 40rem; }
+.crumb { display: flex; align-items: center; gap: .5rem; font-size: .875rem; color: var(--ink-3); margin: 0 0 1.5rem; }
+.crumb a { color: var(--ink-3); text-decoration: none; }
+@media (hover: hover) and (pointer: fine) { .crumb a:hover { color: var(--ink); } }
+
+/* current page in the nav */
+.nav a.on { color: var(--ink); font-weight: 600; }
+.menu-panel a.on { color: var(--brand-ink); font-weight: 600; }
+
+/* ==================================================== closing cta */
+.endcap { text-align: center; max-width: 42rem; margin-inline: auto; }
+.endcap h2 { max-width: none; }
+.endcap .lede { margin-inline: auto; }
+.endcap .hero-cta { justify-content: center; margin-top: 1.75rem; }
