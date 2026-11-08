@@ -330,7 +330,7 @@ em.flourish { font-style: italic; color: var(--brand-ink); }
 }
 
 /* ============================================================ hero */
-.hero { padding-block: clamp(3.5rem, 8vw, 7rem) 0; position: relative; overflow: hidden; }
+.hero { padding-block: clamp(3rem, 6vw, 5rem) clamp(3rem, 6vw, 4.5rem); position: relative; overflow: hidden; }
 .hero::before {
   content: ""; position: absolute; inset: 0 0 auto; height: 40rem;
   background:
@@ -342,7 +342,7 @@ em.flourish { font-style: italic; color: var(--brand-ink); }
 
 .hero-grid { display: grid; gap: 2rem; align-items: start; }
 @media (min-width: 64rem) {
-  .hero-grid { grid-template-columns: 1.15fr .85fr; gap: 4rem; align-items: end; }
+  .hero-grid { grid-template-columns: .9fr 1.1fr; gap: 4rem; align-items: center; }
 }
 .hero h1 { max-width: 15ch; }
 .hero .lede {
@@ -356,30 +356,32 @@ em.flourish { font-style: italic; color: var(--brand-ink); }
 }
 .hero-note svg { width: 1rem; height: 1rem; flex: none; color: var(--brand-ink); }
 
-/* the right-hand stat column, set as a rule-separated list */
-.facts { display: grid; gap: 0; border-top: 1px solid var(--line); }
-.facts div { padding: 1rem 0; border-bottom: 1px solid var(--line); display: flex; align-items: baseline; gap: 1rem; }
-.facts dt { font-size: .875rem; color: var(--ink-2); flex: 1; }
+/* stat row under the hero, Formative-style: big number over a short label */
+.facts {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; margin: clamp(3rem, 6vw, 4.5rem) 0 0;
+  background: var(--line); border: 1px solid var(--line); border-radius: var(--r-l); overflow: hidden;
+}
+@media (min-width: 52rem) { .facts { grid-template-columns: repeat(4, 1fr); } }
+.facts div { background: var(--paper); padding: 1.25rem 1.5rem; display: flex; flex-direction: column-reverse; gap: .4rem; }
+.facts dt { font-size: .875rem; color: var(--ink-2); }
 .facts dd {
-  margin: 0; font-family: var(--display); font-size: 1.75rem; line-height: 1;
+  margin: 0; font-family: var(--display); font-size: clamp(2rem, 4vw, 2.75rem); line-height: 1;
   letter-spacing: -.02em; color: var(--ink);
 }
 .facts dd span { font-family: var(--text); font-size: .8125rem; color: var(--ink-3); letter-spacing: 0; }
-/* small phones: let the qualifier drop under the number instead of squeezing the label */
-@media (max-width: 26rem) { .facts div { flex-wrap: wrap; } .facts dd span { display: block; } }
 
 /* hero: one big screenshot on a tinted panel, two cards floating off its corners */
 .shots {
-  position: relative; margin: clamp(3rem, 6vw, 5rem) 0 0;
-  padding: clamp(1rem, 4vw, 2.5rem); background: var(--t-a); border-radius: var(--r-l);
+  position: relative; margin: 0;
+  padding: clamp(1rem, 4vw, 2rem); background: var(--t-a); border-radius: var(--r-l);
 }
 .shots img { display: block; width: 100%; height: auto; border-radius: var(--r); box-shadow: var(--shadow-l); }
 .shots .s-a, .shots .s-b { display: none; }
 @media (min-width: 52rem) {
-  .shots { padding: 3.5rem 7rem 4rem; margin-bottom: 2rem; }
+  .shots { padding: 4.5rem 2.5rem 5.5rem; }
   .shots .s-a, .shots .s-b { display: block; position: absolute; }
-  .shots .s-a { width: 24%; left: 1.5rem; bottom: -2rem; rotate: -3deg; }
-  .shots .s-b { width: 27%; right: 1.5rem; top: -2rem; rotate: 2deg; }
+  .shots .s-a { width: 36%; left: -1.5rem; bottom: -1.5rem; rotate: -3deg; }
+  .shots .s-b { width: 40%; right: -1.25rem; top: -1.75rem; rotate: 2deg; }
 }
 
 /* screenshot framed on a tint, bleeding off the bottom-right corner */
