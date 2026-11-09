@@ -769,15 +769,6 @@ html:not(.js-ok) .faq-panel { grid-template-rows: 1fr; opacity: 1; transition: n
 .claim-points b { display: block; color: var(--inv-ink); font-weight: 600; font-size: .9375rem; margin-bottom: .15rem; }
 .claim-points span { color: var(--inv-ink-2); font-size: .9375rem; }
 
-/* a struck-through "AI-generated", to make the point visually */
-.struck { position: relative; color: var(--inv-ink-2); white-space: nowrap; }
-.struck::after {
-  content: ""; position: absolute; left: -.05em; right: -.05em; top: 54%;
-  height: 2px; background: var(--inv-brand); border-radius: 2px;
-  transform: scaleX(0); transform-origin: left;
-  transition: transform .45s var(--ease-out) .25s;
-}
-.reveal.in .struck::after, .in.struck::after { transform: scaleX(1); }
 
 /* ======================================================= page head */
 /* Inner pages: a short masthead instead of a hero. */
