@@ -63,8 +63,8 @@ hero lede, the stat row, section 02, the first FAQ entry and the footer.
 of filled bands, numbered sections, one brand gradient. The page is built from rules and
 whitespace rather than cards floating on tinted stripes.
 
-**Type.** Instrument Serif for display (h1, h2, section sub-heads, prices, stats) and
-Instrument Sans for everything else. The serif carries the voice; the sans carries the data.
+**Type.** Instrument Sans throughout, semibold for display (h1, h2, sub-heads, prices, stats)
+and regular for body text.
 
 **Colour.** The brand is the `#FF3B6D` to `#FF9500` gradient on primary buttons, with
 `#1A0F00` text because white fails contrast on both ends. Light theme is warm parchment (main

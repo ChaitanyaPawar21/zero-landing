@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
 <!-- TODO: brand name, logo and domain are placeholders ("Zero"). Swap before launch. -->
-<title>Zero — question papers, practice and live games for ICSE science</title>
-<meta name="description" content="One platform for ICSE science, classes 8 to 12. Question papers out of your own bank, practice and tests for students, and live games the whole class plays. A bank of 6,000+ questions, every one verified by a human. Book a free demo.">
+<title>Zero — question papers, practice and live games for science</title>
+<meta name="description" content="One platform for science, classes 8 to 10. Question papers out of your own bank, practice and tests for students, and live games the whole class plays. A bank of 6,000+ questions, every one verified by a human. Book a demo.">
 <link rel="canonical" href="https://example.com/">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Zero">
-<meta property="og:title" content="Zero — question papers, practice and live games for ICSE science">
+<meta property="og:title" content="Zero — question papers, practice and live games for science">
 <meta property="og:description" content="Question papers out of your own bank, practice and tests for students, and live games the whole class plays. A bank of 6,000+ questions, every one verified by a human.">
 <meta property="og:url" content="https://example.com/">
 <!-- TODO: add a real 1200x630 og image at /og.png -->
@@ -24,7 +24,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap">
 <link rel="stylesheet" href="styles.css">
 
 <script>
@@ -82,7 +82,7 @@
       </svg>
     </button>
 
-    <div class="head-act"><a class="btn btn-primary btn-sm" href="#demo">Book a free demo</a></div>
+    <div class="head-act"><a class="btn btn-primary btn-sm" href="#demo">Book a demo</a></div>
 
     <details class="menu">
       <summary aria-label="Open menu">
@@ -94,7 +94,7 @@
         <a href="#how">How it works</a>
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
-        <a class="btn btn-primary btn-block" href="#demo">Book a free demo</a>
+        <a class="btn btn-primary btn-block" href="#demo">Book a demo</a>
       </div>
     </details>
   </div>
@@ -106,39 +106,78 @@
   <section class="hero" aria-labelledby="hero-h">
     <div class="wrap">
       <div class="hero-grid">
-        <div>
-          <p class="label reveal"><span class="num">ICSE · 8–12</span> Science department software</p>
-          <h1 id="hero-h" class="reveal">Question papers, practice and <em class="flourish">live games.</em></h1>
-          <p class="lede reveal">One bank of 6,000+ questions runs all three — every one verified by a human, and editable by your own staff.</p>
+      <div class="hero-copy">
+        <p class="hero-tag reveal">Science · Classes 8–10</p>
+        <h1 id="hero-h" class="reveal">Question papers, practice and <em class="flourish">live games.</em></h1>
+        <p class="lede reveal">One bank of 6,000+ questions runs all three — every one verified by a human, and editable by your own staff.</p>
 
-          <div class="hero-cta reveal">
-            <a class="btn btn-primary" href="#demo">
-              Book a free demo
-              <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
-            <a class="btn btn-line" href="features.html">See all features</a>
-          </div>
-
-          <p class="hero-note reveal">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-            Nothing to install. Runs in the browser, on the devices your school already has.
-          </p>
+        <div class="hero-cta reveal">
+          <a class="btn btn-primary" href="#demo">
+            Book a demo
+            <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-line" href="features.html">See all features</a>
         </div>
 
-        <!-- Product visual: real screenshots on a tinted panel, two cards floating off its corners. -->
-        <figure class="shots reveal">
-          <img class="s-main" src="img/classroom-quiz.webp" width="1440" height="750" fetchpriority="high"
-               alt="A Classroom Quiz on the projector: a chemistry question with four options, a countdown timer and the team leaderboard.">
-          <img class="s-a" src="img/flashcard.webp" width="680" height="448" alt="A student flashcard on refraction through a lens.">
-          <img class="s-b" src="img/paper-mobile.webp" width="705" height="430" alt="A formatted Class 10 Physics paper from the paper builder.">
-        </figure>
+        <p class="hero-note reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          Nothing to install. Runs in the browser, on the devices your school already has.
+        </p>
+      </div>
+
+      <!-- Product visual: four features, crossfading. The active tab's line is the timer. -->
+      <div class="stage reveal" aria-roledescription="carousel" aria-label="Four features">
+        <div class="stage-frame">
+          <figure class="stage-shot on" id="stage-1">
+            <img src="img/paper-builder.webp" width="1505" height="585" fetchpriority="high" alt="">
+          </figure>
+          <figure class="stage-shot" id="stage-2" aria-hidden="true">
+            <img src="img/classroom-quiz.webp" width="1440" height="750" loading="lazy" alt="">
+          </figure>
+          <figure class="stage-shot" id="stage-3" aria-hidden="true">
+            <img src="img/lewis-3d.webp" width="900" height="523" loading="lazy" alt="">
+          </figure>
+          <figure class="stage-shot" id="stage-4" aria-hidden="true">
+            <img src="img/periodic-table.webp" width="984" height="412" loading="lazy" alt="">
+          </figure>
+          <button class="stage-pause" type="button" aria-label="Pause slideshow">
+            <svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="7" y="5" width="3.2" height="14" rx="1"/><rect x="13.8" y="5" width="3.2" height="14" rx="1"/></svg>
+            <svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+          </button>
+        </div>
+        <div class="stage-tabs">
+          <button class="stage-tab" type="button" aria-controls="stage-1" aria-current="true">
+            <span class="bar"><i></i></span>
+            <span class="n">01</span>
+            <b>Paper builder</b>
+            <span class="d">Plan the marks, fill from the bank, print.</span>
+          </button>
+          <button class="stage-tab" type="button" aria-controls="stage-2" aria-current="false">
+            <span class="bar"><i></i></span>
+            <span class="n">02</span>
+            <b>Live games</b>
+            <span class="d">Classroom Quiz, Live Quiz and crosswords for the whole class.</span>
+          </button>
+          <button class="stage-tab" type="button" aria-controls="stage-3" aria-current="false">
+            <span class="bar"><i></i></span>
+            <span class="n">03</span>
+            <b>3D Lewis builder</b>
+            <span class="d">Type a formula, turn its VSEPR shape in 3D.</span>
+          </button>
+          <button class="stage-tab" type="button" aria-controls="stage-4" aria-current="false">
+            <span class="bar"><i></i></span>
+            <span class="n">04</span>
+            <b>Periodic table</b>
+            <span class="d">Every element, colour-coded. Tap one for its card.</span>
+          </button>
+        </div>
+      </div>
       </div>
 
       <dl class="facts reveal">
-        <div><dt>Classes covered</dt><dd>8–12</dd></div>
-        <div><dt>Question types in the bank</dt><dd>6</dd></div>
+        <div><dt>Classes covered</dt><dd>8–10</dd></div>
+        <div><dt>Question types in the bank</dt><dd>10+</dd></div>
         <div><dt>Questions in the bank</dt><dd>6,000+</dd></div>
-        <div><dt>Charged to parents</dt><dd>₹0 <span>billed to the school</span></dd></div>
         </dl>
     </div>
   </section>
@@ -220,56 +259,11 @@
     </div>
   </section>
 
-  <!-- ===================== 03 — SCREENSHOT TOUR ===================== -->
-  <section class="sec" id="tour" aria-labelledby="tour-h">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="label reveal"><span class="num">03</span> Inside Zero</p>
-        <div>
-          <h2 id="tour-h" class="reveal">What your staff and students actually see.</h2>
-          <p class="lede reveal">Real screens from the product. Scroll sideways for more.</p>
-        </div>
-      </div>
-    </div>
-    <ul class="strip reveal" tabindex="0" aria-label="Product screenshots">
-        <li class="tour-card">
-          <div class="shot t-c"><img src="img/periodic-table.webp" width="984" height="412" loading="lazy" alt=""></div>
-          <h3>Periodic table</h3>
-          <p>Every element, colour-coded by group. Tap one for its card.</p>
-        </li>
-        <li class="tour-card">
-          <div class="shot t-e"><img style="object-position:right center" src="img/lewis-3d.webp" width="900" height="523" loading="lazy" alt=""></div>
-          <h3>3D Lewis builder</h3>
-          <p>Type a formula, get the VSEPR shape you can turn in your hand.</p>
-        </li>
-        <li class="tour-card">
-          <div class="shot t-d"><img src="img/flashcard.webp" width="680" height="448" loading="lazy" alt=""></div>
-          <h3>Flashcards</h3>
-          <p>Rules and definitions per chapter, tagged by difficulty.</p>
-        </li>
-        <li class="tour-card">
-          <div class="shot t-b"><img src="img/paper-builder.webp" width="1505" height="585" loading="lazy" alt=""></div>
-          <h3>Paper builder</h3>
-          <p>Plan the marks, fill from the bank, print the paper.</p>
-        </li>
-        <li class="tour-card">
-          <div class="shot t-a"><img src="img/classroom-quiz.webp" width="1440" height="750" loading="lazy" alt=""></div>
-          <h3>Live games</h3>
-          <p>Four ways to play a chapter with the whole class.</p>
-        </li>
-        <li class="tour-card">
-          <div class="shot t-b"><img src="img/student-home.webp" width="1254" height="378" loading="lazy" alt=""></div>
-          <h3>Student home</h3>
-          <p>Streaks, levels and every subject one tap away.</p>
-        </li>
-    </ul>
-  </section>
-
   <!-- ===================== 04 — HOW IT WORKS ===================== -->
   <section class="sec sec-alt" id="how" aria-labelledby="how-h">
     <div class="wrap">
       <div class="sec-head">
-        <p class="label reveal"><span class="num">04</span> How it works</p>
+        <p class="label reveal"><span class="num">03</span> How it works</p>
         <div>
           <h2 id="how-h" class="reveal">Four steps, and the setup is ours.</h2>
           <p class="lede reveal">Your staff do not spend a single evening on data entry.</p>
@@ -301,10 +295,10 @@
   <section class="sec" id="pricing" aria-labelledby="price-h">
     <div class="wrap">
       <div class="sec-head">
-        <p class="label reveal"><span class="num">05</span> Pricing</p>
+        <p class="label reveal"><span class="num">04</span> Pricing</p>
         <div>
           <h2 id="price-h" class="reveal">Annual, per student, billed to the school.</h2>
-          <p class="lede reveal">Nothing charged to parents. Every school gets a written quote after the demo.</p>
+          <p class="lede reveal">Every school gets a written quote after the demo.</p>
         </div>
       </div>
 
@@ -322,7 +316,7 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Question bank and paper creator</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>People management</li>
           </ul>
-          <a class="btn btn-line btn-block" href="#demo">Book a free demo</a>
+          <a class="btn btn-line btn-block" href="#demo">Book a demo</a>
         </article>
 
         <article class="plan pop">
@@ -338,7 +332,7 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Weekly and baseline tests</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Analytics, doubt box, leaderboards</li>
           </ul>
-          <a class="btn btn-primary btn-block" href="#demo">Book a free demo</a>
+          <a class="btn btn-primary btn-block" href="#demo">Book a demo</a>
         </article>
 
         <article class="plan">
@@ -352,7 +346,7 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Bulk import, multi-branch exports</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Staff training per campus</li>
           </ul>
-          <a class="btn btn-line btn-block" href="#demo">Book a free demo</a>
+          <a class="btn btn-line btn-block" href="#demo">Book a demo</a>
         </article>
       </div>
 
@@ -372,7 +366,7 @@
   <section class="sec sec-alt" id="faq" aria-labelledby="faq-h">
     <div class="wrap">
       <div class="sec-head">
-        <p class="label reveal"><span class="num">06</span> FAQ</p>
+        <p class="label reveal"><span class="num">05</span> FAQ</p>
         <div>
           <h2 id="faq-h" class="reveal">The questions principals ask.</h2>
         </div>
@@ -395,9 +389,9 @@
         </details>
 
         <details>
-          <summary>Is the content aligned to ICSE?</summary>
+          <summary>Is the content organised by syllabus?</summary>
           <div class="faq-panel"><div>
-            <p>Organised chapter-wise by the ICSE syllabus for classes 8 to 12. Your staff can add or edit questions in any chapter.</p>
+            <p>Organised chapter-wise by the syllabus for classes 8 to 10. Your staff can add or edit questions in any chapter.</p>
           </div></div>
         </details>
 
@@ -431,7 +425,7 @@
     <div class="wrap">
       <div class="demo-grid">
         <div>
-          <p class="label reveal"><span class="num">07</span> Book a free demo</p>
+          <p class="label reveal"><span class="num">06</span> Book a demo</p>
           <h2 id="demo-h" class="reveal">See it on your own chapters.</h2>
           <p class="lede reveal" style="color:var(--inv-ink-2)">Thirty minutes. We run a Classroom Quiz on a chapter your classes are doing this month, and build a test paper live while you watch.</p>
 
@@ -506,15 +500,13 @@
                   <label class="chip"><input type="checkbox" name="classes" value="8"><span>Class 8</span></label>
                   <label class="chip"><input type="checkbox" name="classes" value="9"><span>Class 9</span></label>
                   <label class="chip"><input type="checkbox" name="classes" value="10"><span>Class 10</span></label>
-                  <label class="chip"><input type="checkbox" name="classes" value="11"><span>Class 11</span></label>
-                  <label class="chip"><input type="checkbox" name="classes" value="12"><span>Class 12</span></label>
                 </div>
                 <p class="err" id="err-classes" data-error-for="classes"></p>
               </fieldset>
             </div>
 
             <div class="form-foot">
-              <button class="btn btn-primary btn-block" type="submit">Book a free demo</button>
+              <button class="btn btn-primary btn-block" type="submit">Book a demo</button>
               <p>We use these details only to arrange your demo. <a href="#">Privacy</a>.</p>
               <p class="err" id="err-form" aria-live="polite"></p>
             </div>
@@ -546,7 +538,7 @@
       </svg>
     </a>
         <p style="margin-top:1rem;max-width:26rem;font-size:.9375rem;color:var(--ink-2)">
-          One platform for ICSE science, classes 8 to 12. 6,000+ questions, every one human-verified.
+          One platform for science, classes 8 to 10. 6,000+ questions, every one human-verified.
         </p>
       </div>
 
@@ -568,7 +560,7 @@
           <li><a href="features.html#teachers">For teachers</a></li>
           <li><a href="features.html#students">For students</a></li>
           <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#demo">Book a free demo</a></li>
+          <li><a href="#demo">Book a demo</a></li>
         </ul>
       </div>
     </div>

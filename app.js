@@ -114,6 +114,47 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
   });
 })();
 
+/* ---------------------------------------------------- hero stage */
+/* Tabs pick a screenshot; CSS crossfades it. The active tab's line fill is
+   the timer: when its animation ends, the next feature comes up. */
+(function stage() {
+  const root = document.querySelector('.stage');
+  if (!root) return;
+  const shots = [...root.querySelectorAll('.stage-shot')];
+  const tabs = [...root.querySelectorAll('.stage-tab')];
+  const pause = root.querySelector('.stage-pause');
+  let i = 0;
+
+  const show = (k) => {
+    i = (k + tabs.length) % tabs.length;
+    tabs.forEach((t, n) => t.setAttribute('aria-current', String(n === i)));
+    shots.forEach((s, n) => {
+      s.classList.toggle('on', n === i);
+      s.setAttribute('aria-hidden', String(n !== i));
+    });
+  };
+  tabs.forEach((t, n) => t.addEventListener('click', () => show(n)));
+
+  // reduced motion: no auto-advance, so nothing to pause
+  if (reduceMotion.matches) { pause.hidden = true; return; }
+
+  root.addEventListener('animationend', (e) => {
+    if (e.animationName === 'stage-fill') show(i + 1);
+  });
+
+  // held while pointed at or keyboard-focused; the button pauses until pressed again
+  const hold = (on) => root.classList.toggle('held', on);
+  root.addEventListener('pointerenter', () => hold(true));
+  root.addEventListener('pointerleave', () => hold(false));
+  root.addEventListener('focusin', (e) => { if (e.target.matches(':focus-visible')) hold(true); });
+  root.addEventListener('focusout', () => hold(false));
+
+  pause.addEventListener('click', () => {
+    const paused = root.classList.toggle('paused');
+    pause.setAttribute('aria-label', paused ? 'Play slideshow' : 'Pause slideshow');
+  });
+})();
+
 /* ------------------------------------------------------- demo form */
 (function demoForm() {
   const form = document.getElementById('demo-form');
@@ -211,7 +252,7 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
         if (!res.ok) throw new Error(res.status);
       } catch (err) {
         btn.disabled = false;
-        btn.textContent = 'Book a free demo';
+        btn.textContent = 'Book a demo';
         formErr.textContent = 'That did not go through. Please call or WhatsApp us instead.';
         formErr.classList.add('show');
         return;
