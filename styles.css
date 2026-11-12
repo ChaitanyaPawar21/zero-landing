@@ -11,10 +11,10 @@
   color-scheme: light;
 
   /* --- brand ----------------------------------------------------- */
-  --brand: #FF3B6D;
+  --brand: #FF9500;
   --brand-2: #FF9500;
-  --brand-ink: #7A5230;          /* accent text: #FF3B6D is only 2.6:1 on parchment */
-  --brand-red: #B3123F;          /* darker brand pink for text, ~5.4:1 on parchment */
+  --brand-ink: #7A5230;          /* accent text: orange is too low-contrast on parchment */
+  --brand-red: #9A4A00;          /* darker orange for text, ~5:1 on parchment */
   --accent: #FF9500;
   --btn-bg: linear-gradient(90deg, #FF3B6D, #FF9500);
   --btn-fg: #1A0F00;             /* on the gradient; white fails on both ends */
@@ -53,7 +53,7 @@
   --inv-ink: #FFFFFF;
   --inv-ink-2: #D1D5DB;
   --inv-line: #2A2A2A;
-  --inv-brand: #FF3B6D;
+  --inv-brand: #FF9500;
 
   --shadow-s: 0 1px 2px rgba(26, 15, 0, .04), 0 2px 8px -4px rgba(26, 15, 0, .08);
   --shadow: 0 1px 2px rgba(26, 15, 0, .05), 0 12px 28px -14px rgba(26, 15, 0, .18);
@@ -83,8 +83,8 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --brand-ink: #FF3B6D;
-    --brand-red: #FF3B6D;
+    --brand-ink: #FF9500;
+    --brand-red: #FF9500;
     --paper: #0D0D0D;
     --paper-2: #111111;
     --surface: #1A1A1A;
@@ -103,8 +103,8 @@
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --brand-ink: #FF3B6D;
-  --brand-red: #FF3B6D;
+  --brand-ink: #FF9500;
+  --brand-red: #FF9500;
   --paper: #0D0D0D;
   --paper-2: #111111;
   --surface: #1A1A1A;
@@ -222,8 +222,8 @@ strong, b { font-weight: 600; }
   color: var(--brand-ink); font-weight: 500;
 }
 
-#what .label { font-size: 1rem; color: var(--brand-red); }
-#what .label .num { font-size: .875rem; }
+#what .label { font-size: 1rem; font-weight: 800; color: light-dark(#C8102E, #FF4D5E); }
+#what .label .num { font-size: .875rem; font-weight: 700; color: inherit; }
 
 .accent-text { color: var(--brand-ink); }
 em.flourish { font-style: normal; color: var(--brand-ink); }
@@ -497,7 +497,7 @@ em.flourish { font-style: normal; color: var(--brand-ink); }
 }
 .ui-chip.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 .ui-bars { display: flex; align-items: flex-end; gap: .3rem; height: 2.4rem; max-width: 11rem; }
-.ui-bars i { flex: 1; border-radius: 2px 2px 0 0; background: var(--brand); display: block; transform-origin: bottom; }
+.ui-bars i { flex: 1; border-radius: 2px 2px 0 0; background: var(--line); display: block; transform-origin: bottom; }
 .ui-bars i.pick { background: var(--accent); }
 .ui-rank { display: flex; align-items: center; gap: .5rem; padding: .3rem 0; font-weight: 500; }
 .ui-rank b {
